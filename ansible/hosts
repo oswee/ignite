@@ -1,0 +1,13 @@
+[WORKSTATION]
+workstation
+
+[DNS]
+dns
+
+[JENKINS]
+jenkins
+
+[ALL:children]
+WORKSTATION
+DNS
+JENKINS

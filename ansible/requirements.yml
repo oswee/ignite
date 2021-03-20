@@ -1,0 +1,4 @@
+- name: dzintars.minio
+  src: https://github.com/dzintars/ansible-role-minio
+  scm: git
+  version: master

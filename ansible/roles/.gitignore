@@ -1,0 +1,11 @@
+# Ignore everything in dir...
+/*
+
+#  Don't ignore current file.
+!.gitignore
+
+# Don't ignore external role requirement file
+!requirements.yml
+
+# Don't ignore local roles (it means that local roles should be prefixed)
+!local.*/
