@@ -1,20 +1,20 @@
 ---
 - name: Ignite
-  hosts: WORKSTATION
-  connection: local
+  hosts: all
+  # connection: local
   gather_facts: yes
   become: no
 
-  tasks:
-  - name: Debug
-    ansible.builtin.debug:
-      msg:
-      - "Hello"
+  # tasks:
+  # - name: Debug
+  #   ansible.builtin.debug:
+  #     msg:
+  #     - "Hello"
 
-  - name: Facts
-    ansible.builtin.debug:
-      var: ansible_facts
+  # - name: Facts
+  #   ansible.builtin.debug:
+  #     var: ansible_facts
 
   roles:
-  - role: dzintars.minio
-  - role: minio
+  - name: dzintars.minio
+  - name: local.minio

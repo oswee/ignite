@@ -1,13 +1,13 @@
-[WORKSTATION]
-workstation
+# [WORKSTATION]
+# workstation
 
-[DNS]
-dns
+# [DNS]
+# dns
 
-[JENKINS]
-jenkins
+# [JENKINS]
+# jenkins
 
-[ALL:children]
-WORKSTATION
-DNS
-JENKINS
+# [ALL:children]
+# WORKSTATION
+# DNS
+# JENKINS
