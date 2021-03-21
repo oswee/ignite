@@ -1,9 +1,10 @@
 ---
-- name: Converge
-  hosts: all
-  tasks:
-    - name: "Include ansible"
-      include_role:
-        name: "ansible"
+# - name: Converge
+#   hosts: all
+#   tasks:
+#     - name: "Include ansible"
+#       include_role:
+#         name: "ansible"
 
-- import_playbook: ../../playbook.yml
+- name: Converge
+  import_playbook: ../../playbook.yml

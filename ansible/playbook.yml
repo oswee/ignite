@@ -1,9 +1,9 @@
 ---
-- name: Ignite
-  hosts: all
-  # connection: local
-  gather_facts: yes
-  become: no
+# - name: Ignite
+#   hosts: WORKSTATION
+#   connection: local
+#   gather_facts: yes
+#   become: no
 
   # tasks:
   # - name: Debug
@@ -15,6 +15,34 @@
   #   ansible.builtin.debug:
   #     var: ansible_facts
 
+- name: Install MinIO server
+  # hosts: all
+  hosts: WORKSTATION
+  connection: local
+  become: no
+
   roles:
-  - name: dzintars.minio
-  - name: local.minio
+    - role: dzintars.minio
+      vars:
+        minio_domain: 's3.oswee.com'
+      tags: minio
+    - role: local.minio
+
+# - name: Install MinIO server
+#   hosts: HOST-A
+
+#   roles:
+#     - role: organization.minio
+#       vars:
+#         some_ext_var: 'the-value-a'
+#         tags: tag-a
+#     - role: local.minio
+
+# - name: Install Vault server
+#   hosts: HOST-B
+
+#   roles:
+#     - role: organization.vault
+#       vars:
+#         some_ext_var: 'the-value-b'
+#         tags: tag-b

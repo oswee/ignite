@@ -11,7 +11,7 @@ lint: |
   yamllint .
   ansible-lint
 platforms:
-  - name: fedora
+  - name: WORKSTATION
     box: fedora/33-cloud-base
     memory: 4096
     cpus: 4
@@ -31,6 +31,7 @@ provisioner:
   connection_options:
     ansible_ssh_user: vagrant
     ansible_become: true
+    ansible_connection: smart
   log: true
   lint: |
     set -e
