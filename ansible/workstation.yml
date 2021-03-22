@@ -27,22 +27,3 @@
         minio_domain: 's3.oswee.com'
       tags: minio
     - role: local.minio
-
-# - name: Install MinIO server
-#   hosts: HOST-A
-
-#   roles:
-#     - role: organization.minio
-#       vars:
-#         some_ext_var: 'the-value-a'
-#         tags: tag-a
-#     - role: local.minio
-
-# - name: Install Vault server
-#   hosts: HOST-B
-
-#   roles:
-#     - role: organization.vault
-#       vars:
-#         some_ext_var: 'the-value-b'
-#         tags: tag-b

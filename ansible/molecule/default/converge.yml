@@ -6,5 +6,8 @@
 #       include_role:
 #         name: "ansible"
 
-- name: Converge
-  import_playbook: ../../playbook.yml
+- name: Workstation
+  import_playbook: ../../workstation.yml
+
+- name: Bastion
+  import_playbook: ../../bastion.yml

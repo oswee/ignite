@@ -1,0 +1,7 @@
+---
+# handlers file for ignite
+
+- name: Restart HAProxy
+  service:
+    name: haproxy
+    state: restarted
