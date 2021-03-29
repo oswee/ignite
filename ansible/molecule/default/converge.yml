@@ -7,7 +7,7 @@
 #         name: "ansible"
 
 - name: Workstation
-  import_playbook: ../../workstation.yml
+  import_playbook: ../../playbooks/workstation.yml
 
 - name: Bastion
-  import_playbook: ../../bastion.yml
+  import_playbook: ../../playbooks/bastion.yml

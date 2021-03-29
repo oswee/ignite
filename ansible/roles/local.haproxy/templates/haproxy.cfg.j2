@@ -107,7 +107,7 @@ frontend https-in
   # https://www.haproxy.com/blog/haproxy-2-0-and-beyond/
   # TODO: Organize into separate frontends
   bind *:443 ssl alpn h2,http/1.1 crt /etc/letsencrypt/live/{{ root_domain }}/haproxy.pem ecdhe secp384r1
-  http-response replace-header Location ^http://(.*)$	https://\1
+  http-response replace-header Location ^http://(.*)$ https://\1
   maxconn 60000
 
   http-request set-header X-Forwarded-Proto https

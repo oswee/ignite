@@ -29,7 +29,9 @@ module "bastion" {
 
   cloudinit = {}
 
-  vm = {}
+  vm = {
+    user = "ansible"
+  }
 
   vault = {
     address   = "https://vault.example.local"

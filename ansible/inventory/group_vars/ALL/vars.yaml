@@ -1,4 +1,3 @@
 ---
 
 tls_certs: '{{ vault_tls_certs }}'
-tls_certsx: "test"

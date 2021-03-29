@@ -2,7 +2,4 @@
 
 root_domain: 'oswee.com'
 network: '192.168.121'
-haproxy_user: 'haproxy'
-haproxy_group: 'haproxy'
 # tls_certs: '{{ vault_tls_certs }}'
-tls_certsx: "test"
