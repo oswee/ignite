@@ -2,4 +2,3 @@
 
 root_domain: 'oswee.com'
 network: '192.168.121'
-# tls_certs: '{{ vault_tls_certs }}'
