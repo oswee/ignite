@@ -1,0 +1,9 @@
+---
+
+- name: Configure Bastion server
+  hosts: BASTION
+  become: no
+  gather_facts: no
+
+  roles:
+    - role: local.haproxy

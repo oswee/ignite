@@ -1,0 +1,8 @@
+---
+
+- name: Install MinIO server
+  hosts: WORKSTATION
+  become: no
+
+  roles:
+    - role: local.minio

@@ -1,0 +1,11 @@
+---
+# handlers file for roles/local.haproxy
+
+- name: Restart HAProxy
+  service:
+    name: haproxy
+    state: restarted
+
+- name: h1
+  debug:
+    msg: "h1"

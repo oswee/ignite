@@ -1,0 +1,68 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: libvirt
+    type: libvirt
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+platforms:
+  - name: workstation
+    box: fedora/33-cloud-base
+    memory: 4096
+    cpus: 4
+    config_options:
+      ssh.keep_alive: yes
+      ssh.remote_user: "'vagrant'"
+    provider_options:
+      video_type: "'vga'"
+    interfaces:
+      - network_name: forwarded_port
+        guest: 9000
+        host: 9111
+    instance_raw_config_args:
+      - 'vagrant.plugins = ["vagrant-libvirt"]'
+  - name: bastion
+    box: fedora/33-cloud-base
+    memory: 2048
+    cpus: 2
+    config_options:
+      ssh.keep_alive: yes
+      ssh.remote_user: "'vagrant'"
+    provider_options:
+      video_type: "'vga'"
+    # interfaces:
+    #   - network_name: forwarded_port
+    #     guest: 9000
+    #     host: 9111
+    instance_raw_config_args:
+      - 'vagrant.plugins = ["vagrant-libvirt"]'
+provisioner:
+  name: ansible
+  inventory:
+    links:
+      hosts: ../../inventory/hosts
+      group_vars: ../../inventory/group_vars/
+      host_vars: ../../inventory/host_vars/
+  config_options:
+    default:
+      vault_password_file: "$HOME/.ansible-vault.pw"  # Make sure you have this file
+  connection_options:
+    ansible_ssh_user: vagrant
+    ansible_become: true
+    ansible_connection: smart  # Override the connection: local
+  env:
+    ANSIBLE_ROLES_PATH: "../../roles"
+  log: true
+  lint: |
+    set -e
+    ansible-lint
+verifier:
+  name: ansible
+  lint: |
+    set -e
+    ansible-lint

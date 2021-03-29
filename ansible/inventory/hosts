@@ -1,0 +1,17 @@
+[WORKSTATION]
+workstation
+
+[DNS]
+dns
+
+[JENKINS]
+jenkins
+
+[BASTION]
+bastion
+
+[ALL:children]
+WORKSTATION
+DNS
+BASTION
+JENKINS
