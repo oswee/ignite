@@ -48,15 +48,17 @@ provisioner:
       hosts: ../../inventory/hosts
       group_vars: ../../inventory/group_vars/
       host_vars: ../../inventory/host_vars/
-  config_options:
-    default:
-      vault_password_file: "$HOME/.ansible-vault.pw"  # Make sure you have this file
+  # config_options:
+  #   default:
+  #     vault_password_file: "$HOME/.ansible/.vault.key"  # Make sure you have this file
+  options:
+    vault-id: '@$HOME/.ansible/.vault.key'
   connection_options:
     ansible_ssh_user: vagrant
     ansible_become: true
     ansible_connection: smart  # Override the connection: local
   env:
-    ANSIBLE_ROLES_PATH: "../../roles"
+    ANSIBLE_ROLES_PATH: "../../roles/.vendor/:../../roles/"
   log: true
   lint: |
     set -e

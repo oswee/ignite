@@ -1,4 +1,0 @@
----
-# vars file for roles/local.minio
-
-# minio_domain: "s3.localrole.vars"

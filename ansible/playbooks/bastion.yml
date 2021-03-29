@@ -6,4 +6,4 @@
   gather_facts: no
 
   roles:
-    - role: local.haproxy
+    - role: haproxy
