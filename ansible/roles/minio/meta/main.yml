@@ -1,6 +1,6 @@
 galaxy_info:
   author: Dzintars Klavins
-  description: Installs and configures HAProxy
+  description: Installs MinIO server
   company: Oswee
 
   # If the issue tracker for your role is not on github, uncomment the
@@ -31,6 +31,7 @@ galaxy_info:
   - name: Fedora
     versions:
     - 33
+  #   - 25
   # - name: SomePlatform
   #   versions:
   #   - all
@@ -47,7 +48,7 @@ galaxy_info:
     #       Maximum 20 tags per role.
 
 dependencies:
-- name: dzintars.haproxy
-  src: https://github.com/dzintars/ansible-role-haproxy
-  scm: git
-  version: master
+- name: dzintars.minio
+  vars:
+    minio_domain: "s3.oswee.com"
+    minio_server_port: "9000"

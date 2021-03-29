@@ -1,17 +1,17 @@
 [WORKSTATION]
 workstation
 
-[DNS]
-dns
+# [DNS]
+# dns
 
-[JENKINS]
-jenkins
+# [JENKINS]
+# jenkins
 
 [BASTION]
 bastion
 
 [ALL:children]
 WORKSTATION
-DNS
+# DNS
 BASTION
-JENKINS
+# JENKINS

@@ -1,5 +1,5 @@
 ---
-# handlers file for roles/local.haproxy
+# handlers file for roles/haproxy
 
 - name: Restart HAProxy
   service:

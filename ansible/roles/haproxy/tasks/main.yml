@@ -1,5 +1,5 @@
 ---
-# tasks file for roles/local.haproxy
+# tasks file for roles/haproxy
 
 # - include_role:
 #     name: dzintars.haproxy
@@ -18,7 +18,7 @@
     group: '{{ haproxy_group }}'
     mode: "u=rw,g=r,o="
 
-- name: Copy haproxy.cfg and reload HAProxy X
+- name: Copy haproxy.cfg and reload HAProxy
   ansible.builtin.template:
     src: "haproxy.cfg.j2"
     dest: "/etc/haproxy/haproxy.cfg"
