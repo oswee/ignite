@@ -4,5 +4,8 @@
   hosts: WORKSTATION
   become: no
 
+  collections:
+    - dzintars.ansible
+
   roles:
     - role: minio
