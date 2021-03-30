@@ -1,2 +1,5 @@
 ---
 # defaults file for roles/haproxy
+
+haproxy_user: "haproxy"
+haproxy_group: "haproxy"

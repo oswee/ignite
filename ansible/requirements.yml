@@ -1,0 +1,29 @@
+collections:
+  - name: https://github.com/dzintars/ansible.git
+    version: master
+    type: git
+# roles:
+  # - name: dzintars.libvirt
+  #   src: https://github.com/dzintars/ansible-role-libvirt
+  #   scm: git
+  #   version: master
+
+  # - name: dzintars.haproxy
+  #   src: https://github.com/dzintars/ansible-role-haproxy
+  #   scm: git
+  #   version: master
+
+  # - name: dzintars.vault
+    # src: https://github.com/dzintars/ansible-role-vault
+    # scm: git
+    # version: master
+
+  # - name: dzintars.terraform
+    # src: https://github.com/dzintars/ansible-role-terraform
+    # scm: git
+    # version: master
+
+  # - name: dzintars.minio
+  #   src: https://github.com/dzintars/ansible-role-minio
+  #   scm: git
+  #   version: master

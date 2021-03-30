@@ -1,6 +1,11 @@
 ---
 dependency:
   name: galaxy
+  # options:
+    # ignore-certs: True
+    # ignore-errors: True
+    # role-file: requirements.yml
+    # requirements-file: ../../collections/requirements.yml
 driver:
   name: vagrant
   provider:
@@ -58,7 +63,8 @@ provisioner:
     ansible_become: true
     ansible_connection: smart  # Override the connection: local
   env:
-    ANSIBLE_ROLES_PATH: "../../roles/.vendor/:../../roles/"
+    ANSIBLE_ROLES_PATH: "../../roles/"
+    ANSIBLE_COLLECTIONS_PATHS: "../../collections"
   log: true
   lint: |
     set -e
