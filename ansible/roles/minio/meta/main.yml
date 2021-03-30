@@ -48,12 +48,6 @@
 #    # NOTE: A tag is limited to a single word comprised of alphanumeric characters.
 #    #       Maximum 20 tags per role.
 
-# collections:
-#   - name: dzintars.ansible
-# - name: https://github.com/dzintars/ansible.git
-#   version: master
-#   type: git
-
 dependencies:
   - name: dzintars.ansible.minio
     vars:

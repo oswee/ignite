@@ -5,8 +5,5 @@
   become: no
   gather_facts: no
 
-  # collections:
-  #   - dzintars.ansible
-
   roles:
     - role: haproxy

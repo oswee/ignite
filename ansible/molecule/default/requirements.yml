@@ -1,6 +1,1 @@
 ---
-
-collections:
-  - name: https://github.com/dzintars/ansible.git
-    version: master
-    type: git
