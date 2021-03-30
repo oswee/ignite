@@ -1,11 +1,12 @@
 ---
 
-- name: Install MinIO server
+- name: Configure workstations
   hosts: WORKSTATION
   become: no
 
-  collections:
-    - dzintars.ansible
-
   roles:
     - role: minio
+    - role: dzintars.ansible.vault
+    - role: dzintars.ansible.terraform
+      vars:
+        become_user: vagrant
