@@ -10,8 +10,12 @@ workstation
 [BASTION]
 bastion
 
+# [BOOTSTRAP]
+# bootstrap
+
 [ALL:children]
 WORKSTATION
+# BOOTSTRAP
 # DNS
 BASTION
 # JENKINS
