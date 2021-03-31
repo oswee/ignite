@@ -1,10 +1,5 @@
 ---
 
-collections:
-  - name: https://github.com/dzintars/ansible.git
-    version: master
-    type: git
-
 # roles:
   # - name: dzintars.libvirt
   #   src: https://github.com/dzintars/ansible-role-libvirt
