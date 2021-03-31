@@ -1,36 +1,55 @@
 ---
 dependency:
   name: galaxy
-  # options:
+  options:
     # ignore-certs: True
     # ignore-errors: True
     # role-file: requirements.yml
-    # requirements-file: ../../collections/requirements.yml
+    requirements-file: collections.yml
+
 driver:
   name: vagrant
   provider:
     name: libvirt
     type: libvirt
+    driver: kvm
+
 lint: |
   set -e
   yamllint .
   ansible-lint
+
 platforms:
   - name: workstation
     box: fedora/33-cloud-base
+    raw_config_args:
+      - "cpu_mode = 'host-passthrough'"
+      - "video_type = 'virtio'"
     memory: 4096
     cpus: 4
     config_options:
       ssh.keep_alive: yes
       ssh.remote_user: "'vagrant'"
-    provider_options:
-      video_type: "'vga'"
+    # provider_options:
+    #   video_type: "'vga'"
     interfaces:
-      - network_name: forwarded_port
-        guest: 9000
-        host: 9111
+      - network_name: private_network
+        auto_config: yes
+        # dev: "virbr0"
+        # type: "bridge"
+        # mode: "bridge"
+        type: static
+        ip: 192.168.121.2
+        options:
+          append_platform_to_hostname: yes
+    # private_ip: 192.168.121.2
     instance_raw_config_args:
       - 'vagrant.plugins = ["vagrant-libvirt"]'
+      # - 'vm.hostname = "workstation"'
+      # - "vm.network 'private_network', ip: '192.168.121.2'"
+      - "ssh.insert_key = false"
+    groups:
+      - WORKSTATION
   - name: bastion
     box: fedora/33-cloud-base
     memory: 2048
@@ -38,14 +57,16 @@ platforms:
     config_options:
       ssh.keep_alive: yes
       ssh.remote_user: "'vagrant'"
-    provider_options:
-      video_type: "'vga'"
-    # interfaces:
-    #   - network_name: forwarded_port
-    #     guest: 9000
-    #     host: 9111
+    interfaces:
+      - auto_config: yes
+        network_name: private_network
+        type: static
+        ip: 192.168.121.254
     instance_raw_config_args:
       - 'vagrant.plugins = ["vagrant-libvirt"]'
+    groups:
+      - BASTION
+
 provisioner:
   name: ansible
   inventory:
@@ -56,19 +77,25 @@ provisioner:
   # config_options:
   #   default:
   #     vault_password_file: "$HOME/.ansible/.vault.key"  # Make sure you have this file
+  playbooks:
+    converge: converge.yml
+    # create: create.yml
   options:
+    vvv: yes
     vault-id: '@$HOME/.ansible/.vault.key'
   connection_options:
     ansible_ssh_user: vagrant
-    ansible_become: true
+    ansible_become: yes
     ansible_connection: smart  # Override the connection: local
   env:
+    ANSIBLE_CONFIG: ../../ansible.cfg
     ANSIBLE_ROLES_PATH: "../../roles/"
     ANSIBLE_COLLECTIONS_PATHS: "../../collections"
-  log: true
+  log: yes
   lint: |
     set -e
     ansible-lint
+
 verifier:
   name: ansible
   lint: |
