@@ -1,0 +1,12 @@
+---
+# defaults file for roles/bind
+
+dns_domain_name: example.com
+host_domain_name: ocp.example.com
+cluster_name: ocp4
+cluster_network: 192.168.123
+hostname: bastion
+host_octet: 252
+dns:
+  - forwarder1: 1.1.1.1
+  - forwarder2: 8.8.8.8
