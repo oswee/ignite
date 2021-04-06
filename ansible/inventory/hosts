@@ -10,12 +10,29 @@ workstation
 [BASTION]
 bastion
 
-# [BOOTSTRAP]
-# bootstrap
+[BOOTSTRAP]
+bootstrap
+
+[MASTER]
+master-0
+master-1
+master-2
+
+[INFNOD]
+infnod-0
+infnod-1
+
+[CPTNOD]
+cptnod-0
+cptnod-1
+cptnod-2
 
 [ALL:children]
 WORKSTATION
-# BOOTSTRAP
-# DNS
+BOOTSTRAP
+DNS
 BASTION
 # JENKINS
+MASTER
+INFNOD
+CPTNOD
