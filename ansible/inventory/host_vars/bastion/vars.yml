@@ -1,4 +1,4 @@
 ---
 
-name: 'bastion'
-host: '22'
+hostname: 'bastion'
+host_octet: '254'

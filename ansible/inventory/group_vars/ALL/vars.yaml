@@ -1,3 +1,6 @@
 ---
 
 tls_certs: '{{ vault_tls_certs }}'
+dns_domain_name: '{{ vault_dns_domain_name }}'
+cluster_name: 'ocp'
+network: '192.168.121'
