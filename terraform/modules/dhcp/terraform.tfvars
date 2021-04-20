@@ -1,16 +1,9 @@
 /* qemu_uri = "qemu:///system" */
 
-domain       = {
-  name = "oswee.com"
-}
+domain       = "oswee.com"
 cluster_name = "ocp"
+addresses    = ["192.168.122.0/24"]
 autostart    = true
-
-addresses = ["192.168.67.0/24"]
-
-volume = {
-  name = "test"
-}
 
 /* hostname = "bastion" */
 /* network_config = { */

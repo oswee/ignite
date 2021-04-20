@@ -1,36 +1,56 @@
-resource "libvirt_pool" "pool" {
-  name = terraform.workspace
-  type = "dir"
-  path = "/var/lib/libvirt/pools/${terraform.workspace}"
+resource "random_pet" "instance" {}
+
+resource "tls_private_key" "ansible" {
+  algorithm   = "ECDSA"
+  ecdsa_curve = "P521"
 }
 
-resource "libvirt_network" "network" {
-  name      = terraform.workspace
-  mode      = "nat"
-  domain    = var.domain
-  addresses = ["192.168.124.0/24"]
-  autostart = true
-  dhcp {
-    enabled = true
-  }
-  dns {
-    enabled = true
+# Save the private key so that ansible can accsess this guest
+resource "local_file" "ansible_ssh_priv_key" {
+    content     = tls_private_key.ansible.private_key_pem
+    filename = pathexpand("~/.ssh/ansible_ecdsa")
+    file_permission = "0600"
+}
+
+module "libvirt_pool" {
+  source = "../../modules/libvirt-pool"
+  pool   = {
+    name = terraform.workspace
   }
 }
-module "bastion" {
-  source = "git@github.com:dzintars/terraform-libvirt-domain.git?ref=v0.0.1-alpha"
-  pool = {
-    name = libvirt_pool.pool.name
+
+module "libvirt_network" {
+  source   = "../../modules/libvirt-network"
+  addresses = var.addresses
+  network = {
+    name = terraform.workspace
   }
+}
+
+module "dhcp" {
+  # source = "git@github.com:dzintars/terraform-libvirt-domain.git?ref=v0.0.1-alpha"
+  source = "../../../../../dzintars/terraform-libvirt-domain"
 
   volume = {
-    pool = libvirt_pool.pool.name
+    name = "dhcp"
+    pool = module.libvirt_pool.name
   }
 
-  cloudinit = {}
+  cloudinit = {
+    name = null
+    interface_name = "eth0"
+    addresses = "192.168.67.254/24"
+    gateway   = "192.168.67.1"
+    nameservers = {
+      ns1 = "1.1.1.1"
+      ns2 = "9.9.9.9"
+      ns3 = null
+    }
+  }
 
   vm = {
     user = "ansible"
+    user_ssh_pub_key = tls_private_key.ansible.public_key_openssh
   }
 
   vault = {
@@ -40,35 +60,14 @@ module "bastion" {
   }
 
   domain = {
+    name = "dhcp"
     memory = "2048"
     vcpu   = "2"
   }
 
   network = {
-    name = libvirt_network.network.name
+    name = module.libvirt_network.name
+    mac  = "3a:72:7b:74:25:b4"
   }
 }
 
-# module "bastion" {
-#   source = "../../modules/libvirt-domain"
-
-#   pool_name       = module.libvirt_pool.name
-#   network_id      = module.libvirt_network.id
-#   network_name    = module.libvirt_network.name
-#   img_url         = "https://mirror.netsite.dk/fedora/linux/releases/33/Cloud/x86_64/images/Fedora-Cloud-Base-33-1.2.x86_64.qcow2"
-#   instance_count  = 1
-#   vault_addr      = "https://vault.oswee.com"
-#   vault_role_id   = module.vault-ssh.approle.role
-#   vault_secret_id = module.vault-ssh.approle.secret
-#   user            = "ansible"
-# }
-
-# module "vault" {
-#   source = "../../modules/vault"
-# }
-
-# module "vault-ssh" {
-#   source = "../../modules/vault-ssh"
-
-#   user            = "ansible"
-# }
