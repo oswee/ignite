@@ -1,12 +1,20 @@
 ---
 
-- name: Configure workstations
+- name: Configure Workstation
   hosts: WORKSTATION
+  connection: local
+  gather_facts: yes
   become: no
 
   roles:
     - role: minio
+      tags:
+        - minio
     - role: dzintars.ansible.vault
+      tags:
+        - vault
     - role: dzintars.ansible.terraform
+      tags:
+        - terraform
       vars:
-        become_user: vagrant
+        terraform_version: 0.14.7

@@ -1,7 +1,7 @@
 acl internal_nets { {{ cluster_network }}.0/24; };
 
 options {
-  listen-on port 53 { 127.0.0.1; {{ cluster_network }}.254; };
+listen-on port 53 { 127.0.0.1; {{ cluster_network }}.{{ host_octet | default("254") }}; };
   listen-on-v6 port 53 { ::1; };
 
   directory "/var/named";
@@ -26,8 +26,8 @@ options {
   /* https://fedoraproject.org/wiki/Changes/CryptoPolicy */
   include "/etc/crypto-policies/back-ends/bind.config";
 
-  /* forward only; */
   forwarders { {{ dns.forwarder1 | default("1.1.1.1") }}; {{ dns.forwarder2 | default("8.8.8.8") }}; };
+  forward only;
 };
 
 logging {

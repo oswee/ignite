@@ -1,0 +1,11 @@
+---
+
+- name: Debug
+  ansible.builtin.debug:
+    msg:
+    - "Handler test"
+
+- name: Restart Firewalld
+  service:
+    name: firewalld
+    state: restarted

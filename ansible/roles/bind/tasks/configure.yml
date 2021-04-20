@@ -1,7 +1,20 @@
 ---
 # tasks file for roles/bind
+- name: Set a hostname
+  ansible.builtin.hostname:
+    name: dns1
 
-- name: copy named.conf and zone files
+- name: Copy Bind configuration
+  template:
+    src: named.conf.j2
+    dest: /etc/named.conf
+    owner: named
+    group: named
+    setype: named_conf_t
+    mode: '0644'
+  notify: restart named
+
+- name: Copy zone files
   template:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
@@ -10,12 +23,13 @@
     setype: named_conf_t
     mode: '0644'
   loop:
-    - {src: 'named.conf.j2', dest: '/etc/named.conf'}
     - {src: 'zone.j2', dest: '/var/named/{{ cluster_name }}.{{ dns_domain_name }}.zone'}
     - {src: 'arpa.zone.j2', dest: "/var/named/{{ cluster_network | ipaddr('revdns') | regex_replace('^[0-9]+\\.', '') }}zone"}
-  notify: restart named
+  notify:
+    - restart named
+    - restart firewalld
 
-- name: deploy resolv.conf template
+- name: Deploy resolv.conf template
   template:
     src: 'resolv.conf.j2'
     dest: /etc/resolv.conf
@@ -27,12 +41,12 @@
   notify:
     - restart NetworkManager
 
-- name: add an Ethernet connection with static IP configuration
+- name: Add an Ethernet connection with static IP configuration
   nmcli:
-    conn_name: eth0
+    conn_name: eth1
     type: ethernet
-    dns4: '{{ cluster_network }}.{{ host_octet }}'
-    dns4_search: '{{ cluster_name }}.{{ dnd_domain_name | default("example.com")}}'
+    dns4: '{{ cluster_network }}.{{ host_octet | default("254") }}'
+    dns4_search: '{{ cluster_name }}.{{ dns_domain_name | default("example.com") }}'
     state: present
   notify:
     - restart NetworkManager

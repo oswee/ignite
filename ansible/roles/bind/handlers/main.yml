@@ -3,19 +3,19 @@
 
 - name: enable named
   systemd:
-    name: named-chroot
+    name: named
     enabled: yes
 
 - name: start named
   systemd:
-    name: named-chroot
+    name: named
     state: started
 
 - name: restart named
   systemd:
     state: restarted
     daemon_reload: yes
-    name: named-chroot
+    name: named
 
 - name: restart firewalld
   systemd:

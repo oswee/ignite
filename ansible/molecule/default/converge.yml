@@ -11,3 +11,12 @@
 
 - name: Bastion
   import_playbook: ../../playbooks/bastion.yml
+
+- name: DHCP
+  import_playbook: ../../playbooks/dhcp.yml
+
+- name: PXE
+  import_playbook: ../../playbooks/pxe.yml
+
+- name: DNS
+  import_playbook: ../../playbooks/dns.yml

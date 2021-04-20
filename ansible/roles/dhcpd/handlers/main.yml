@@ -1,0 +1,26 @@
+---
+# handlers file for roles/dhcpd
+
+- name: enable dhcpd
+  become: yes
+  ansible.builtin.systemd:
+    state: enabled
+    name: dhcpd
+
+- name: start dhcpd
+  become: yes
+  ansible.builtin.systemd:
+    state: started
+    name: dhcpd
+
+- name: restart dhcpd
+  become: yes
+  ansible.builtin.systemd:
+    state: restarted
+    name: dhcpd
+
+- name: restart firewalld
+  become: yes
+  ansible.builtin.service:
+    name: firewalld
+    state: restarted

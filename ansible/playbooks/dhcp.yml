@@ -1,0 +1,9 @@
+---
+
+- name: Configure DHCP server
+  hosts: DHCP
+  become: no
+  gather_facts: yes
+
+  roles:
+    - role: dhcpd

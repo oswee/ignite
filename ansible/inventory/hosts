@@ -1,14 +1,23 @@
 [WORKSTATION]
 workstation
 
-# [DNS]
-# dns
+[DHCP]
+dhcp
+
+[PXE]
+pxe
+
+[DNS]
+dns
 
 # [JENKINS]
 # jenkins
 
 [BASTION]
 bastion
+
+[INFRA:children]
+DNS
 
 [BOOTSTRAP]
 bootstrap
@@ -31,6 +40,8 @@ cptnod-2
 WORKSTATION
 BOOTSTRAP
 DNS
+DHCP
+PXE
 BASTION
 # JENKINS
 MASTER
