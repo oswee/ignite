@@ -13,7 +13,7 @@ max-lease-time      14400;
 
 
 subnet {{ cluster_network }}.0 netmask 255.255.255.0 {
-    interface eth1;
+    interface eth0;
     pool {
         range {{ cluster_network }}.1 {{ cluster_network }}.250;
 
