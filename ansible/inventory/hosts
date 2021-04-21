@@ -1,8 +1,14 @@
 [WORKSTATION]
 workstation
 
-# [DNS]
-# dns
+[DHCP]
+dhcp ansible_host=192.168.67.254
+
+[PXE]
+pxe
+
+[DNS]
+dns
 
 # [JENKINS]
 # jenkins
@@ -10,8 +16,34 @@ workstation
 [BASTION]
 bastion
 
+[INFRA:children]
+DNS
+
+[BOOTSTRAP]
+bootstrap
+
+[MASTER]
+master-0
+master-1
+master-2
+
+[INFNOD]
+infnod-0
+infnod-1
+
+[CPTNOD]
+cptnod-0
+cptnod-1
+cptnod-2
+
 [ALL:children]
 WORKSTATION
-# DNS
+BOOTSTRAP
+DNS
+DHCP
+PXE
 BASTION
 # JENKINS
+MASTER
+INFNOD
+CPTNOD

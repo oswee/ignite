@@ -1,0 +1,31 @@
+$TTL 900
+
+@           IN  SOA bastion.{{ cluster_name }}.{{ dns_domain_name }}.    hostmaster.{{ cluster_name }}.{{ dns_domain_name }}. (
+            2019062002      ; serial number
+            3H              ; refresh interval (3 hours)
+            30M             ; retry interval (30 minutes)
+            1W              ; expiry period (1 week)
+            3H )            ; negative TTL (3 hours)
+
+            IN  NS  bastion.{{ cluster_name }}.{{ dns_domain_name }}.
+bastion     IN  A   {{ cluster_network }}.254
+bootstrap-0 IN  A   {{ cluster_network }}.253
+master-0    IN  A   {{ cluster_network }}.10
+master-1    IN  A   {{ cluster_network }}.11
+master-2    IN  A   {{ cluster_network }}.12
+infnod-0    IN  A   {{ cluster_network }}.20
+infnod-1    IN  A   {{ cluster_network }}.21
+cptnod-0    IN  A   {{ cluster_network }}.30
+cptnod-1    IN  A   {{ cluster_network }}.31
+cptnod-2    IN  A   {{ cluster_network }}.32
+api         IN  A   {{ cluster_network }}.254
+api-int     IN  A   {{ cluster_network }}.254
+apps        IN  A   {{ cluster_network }}.254
+*.apps      IN  A   {{ cluster_network }}.254
+etcd-0      IN  A   {{ cluster_network }}.10
+etcd-1      IN  A   {{ cluster_network }}.11
+etcd-2      IN  A   {{ cluster_network }}.12
+_etcd-server-ssl._tcp   IN  SRV 0   10  2380    etcd-0.{{ cluster_name }}.{{ dns_domain_name }}.
+                        IN  SRV 0   10  2380    etcd-1.{{ cluster_name }}.{{ dns_domain_name }}.
+                        IN  SRV 0   10  2380    etcd-2.{{ cluster_name }}.{{ dns_domain_name }}.
+;EOF

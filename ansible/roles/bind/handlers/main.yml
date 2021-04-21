@@ -1,0 +1,30 @@
+---
+# handlers file for roles/bind
+
+- name: enable named
+  systemd:
+    name: named
+    enabled: yes
+
+- name: start named
+  systemd:
+    name: named
+    state: started
+
+- name: restart named
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: named
+
+- name: restart firewalld
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: firewalld
+
+- name: restart NetworkManager
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: NetworkManager

@@ -3,7 +3,7 @@
 - name: Configure Bastion server
   hosts: BASTION
   become: no
-  gather_facts: no
+  gather_facts: yes
 
   roles:
-    - role: haproxy
+    - role: bind

@@ -1,0 +1,9 @@
+---
+
+- name: Configure PXE server
+  hosts: PXE
+  become: no
+  gather_facts: yes
+
+  roles:
+    - role: dzintars.ansible.ipxe

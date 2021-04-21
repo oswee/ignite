@@ -1,0 +1,12 @@
+---
+# defaults file for roles/bind
+
+dns_domain_name: oswee.com
+host_domain_name: ocp.oswee.com
+cluster_name: ocp
+cluster_network: 192.168.121
+hostname: bastion
+host_octet: 253
+dns:
+  - forwarder1: 1.1.1.1
+  - forwarder2: 8.8.8.8

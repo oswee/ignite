@@ -1,0 +1,7 @@
+---
+# handlers file for roles/common
+
+- name: Debug
+  ansible.builtin.debug:
+    msg:
+    - "Handler test"

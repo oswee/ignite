@@ -1,0 +1,86 @@
+authoritative;
+ddns-update-style   interim;
+default-lease-time  14400;
+max-lease-time      14400;
+
+    option              routers                 {{ cluster_network }}.254;
+    option              broadcast-address       {{ cluster_network }}.255;
+    option              subnet-mask             255.255.255.0;
+    option              domain-name-servers     {{ cluster_network }}.252;
+    option              ntp-servers             time.cloudflare.com;
+    option              domain-search           "{{ cluster_name }}.{{ dns_domain_name }}", "{{ dns_domain_name }}";
+    option              domain-name             "{{ cluster_name }}.{{ dns_domain_name }}";
+
+
+subnet {{ cluster_network }}.0 netmask 255.255.255.0 {
+    interface eth0;
+    pool {
+        range {{ cluster_network }}.1 {{ cluster_network }}.250;
+
+        host  {{ hostvars['bootstrap'].hostname }} {
+            hardware ethernet {{ hostvars['bootstrap'].mac }};
+            fixed-address {{ cluster_network }}.{{ hostvars['bootstrap'].host_octet }};
+            option host-name "{{ hostvars['bootstrap'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}";
+        }
+
+        host {{ hostvars['master-0'].hostname }} {
+            hardware ethernet {{ hostvars['master-0'].mac }};
+            fixed-address {{ cluster_network }}.{{ hostvars['master-0'].host_octet }};
+            option host-name "{{ hostvars['master-0'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}";
+        }
+
+        host {{ hostvars['master-1'].hostname }} {
+            hardware ethernet {{ hostvars['master-1'].mac }};
+            fixed-address {{ cluster_network }}.{{ hostvars['master-1'].host_octet }};
+            option host-name "{{ hostvars['master-1'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}";
+        }
+
+        host {{ hostvars['master-2'].hostname }} {
+            hardware ethernet {{ hostvars['master-2'].mac }};
+            fixed-address {{ cluster_network }}.{{ hostvars['master-2'].host_octet }};
+            option host-name "{{ hostvars['master-2'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}";
+        }
+
+        host {{ hostvars['infnod-0'].hostname }} {
+            hardware ethernet {{ hostvars['infnod-0'].mac }};
+            fixed-address {{ cluster_network }}.{{ hostvars['infnod-0'].host_octet }};
+            option host-name "{{ hostvars['infnod-0'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}";
+        }
+
+        host {{ hostvars['infnod-1'].hostname }} {
+            hardware ethernet {{ hostvars['infnod-1'].mac }};
+            fixed-address {{ cluster_network }}.{{ hostvars['infnod-1'].host_octet }};
+            option host-name "{{ hostvars['infnod-1'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}";
+        }
+
+        host {{ hostvars['cptnod-0'].hostname }} {
+            hardware ethernet {{ hostvars['cptnod-0'].mac }};
+            fixed-address {{ cluster_network }}.{{ hostvars['cptnod-0'].host_octet }};
+            option host-name "{{ hostvars['cptnod-0'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}";
+        }
+
+        host {{ hostvars['cptnod-1'].hostname }} {
+            hardware ethernet {{ hostvars['cptnod-1'].mac }};
+            fixed-address {{ cluster_network }}.{{ hostvars['cptnod-1'].host_octet }};
+            option host-name "{{ hostvars['cptnod-1'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}";
+        }
+
+        host {{ hostvars['cptnod-2'].hostname }} {
+            hardware ethernet {{ hostvars['cptnod-2'].mac }};
+            fixed-address {{ cluster_network }}.{{ hostvars['cptnod-2'].host_octet }};
+            option host-name "{{ hostvars['cptnod-2'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}";
+        }
+
+        # this will not give out addresses to hosts not listed above
+        deny unknown-clients;
+
+        if exists user-class and option user-class = "iPXE" {
+            filename "http://{{ hostvars['bastion'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}:8080/boot.ipxe";
+        } else {
+            filename "undionly.kpxe";
+        }
+
+        next-server {{ cluster_network }}.{{ hostvars['bastion'].host_octet }};
+    }
+}
+

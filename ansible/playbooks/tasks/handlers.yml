@@ -1,0 +1,6 @@
+---
+
+- name: Debug
+  ansible.builtin.debug:
+    msg:
+    - "Handler test"

@@ -1,0 +1,9 @@
+---
+
+- name: Configure DNS server
+  hosts: DNS
+  become: no
+  gather_facts: yes
+
+  roles:
+    - role: bind

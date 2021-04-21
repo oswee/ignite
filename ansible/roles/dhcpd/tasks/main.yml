@@ -1,0 +1,14 @@
+---
+# tasks file for roles/dhcpd
+
+- name: Deploy dhcpd.conf template
+  become: yes
+  ansible.builtin.template:
+    src: dhcpd.conf.j2
+    dest: /etc/dhcp/dhcpd.conf
+    owner: '{{ dhcpd_user }}'
+    group: '{{ dhcpd_group }}'
+    mode: 0644
+    backup: yes
+  notify:
+    - restart dhcpd
