@@ -1,6 +1,6 @@
 ---
 
 hostname: 'bastion'
-host_octet: '254'
+host_octet: '250'
 ansible_python_interpreter: /usr/bin/python3.9
-mac: "00:1a:4a:16:01:27"
+mac: "c3:9e:84:37:8f:6b"

@@ -8,3 +8,5 @@ memory: 1024
 disk_size: 5
 mac: "00:1a:4a:16:01:26"
 become_user: "ansible"
+dhcp_network_interface: "eth0"
+# ansible_host_key_checking: no

@@ -1,7 +1,7 @@
 ---
 # defaults file for roles/dhcpd
 
-dhcp_network: "192.168.121"
+dhcp_network: "192.168.67"
 dhcp_domain_name: "oswee.com"
 dhcp_domain_search: "oswee.com"
 dhcpd_user: "dhcpd"
