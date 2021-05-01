@@ -2,7 +2,7 @@
 workstation
 
 [DHCP]
-dhcp ansible_host=192.168.67.254
+dhcp
 
 [PXE]
 pxe

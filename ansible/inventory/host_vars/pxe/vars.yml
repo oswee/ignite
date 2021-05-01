@@ -1,0 +1,6 @@
+---
+
+hostname: 'pxe'
+host_octet: '252'
+ansible_python_interpreter: /usr/bin/python3.9
+mac: "f4:ce:30:a8:12:93"
