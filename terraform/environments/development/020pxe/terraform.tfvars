@@ -1,6 +1,7 @@
-env_name = "dev"
-env_layer = "020pxe"
-global_fqdn = "oswee.com"
+env_name      = "dev"
+env_layer     = "020pxe"
+global_fqdn   = "oswee.com"
+instance_name = "pxe"
 
 /* qemu_uri = "qemu:///system" */
 

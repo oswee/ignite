@@ -1,4 +1,4 @@
-resource "null_resource" "dhcp_config" {
+resource "null_resource" "pxe_config" {
   # triggers = {
   #   dhcp = module.dhcp
   # }
@@ -6,7 +6,7 @@ resource "null_resource" "dhcp_config" {
   provisioner "remote-exec" {
     inline = ["echo Waiting for SSH..."]
     connection {
-      host        = "pxe"
+      host        = "${var.instance_name}"
       type        = "ssh"
       user        = "ansible"
       private_key = tls_private_key.ansible.private_key_pem
@@ -23,7 +23,7 @@ resource "null_resource" "dhcp_config" {
 
   depends_on = [
     local_file.ansible_ssh_priv_key,
-    module.dhcp,
+    module.pxe,
   ]
 }
 
