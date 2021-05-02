@@ -1,7 +1,7 @@
 variable "env_name" {
   description = "Environment name"
   type = string
-  default = "dev"
+  default = "prod"
 }
 
 variable "env_layer" {
