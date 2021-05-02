@@ -1,0 +1,46 @@
+---
+# tasks file for roles/pxe
+
+- name: Ensure TFTPboot directory exists
+  become: yes
+  file:
+    path: /var/lib/tftpboot
+    state: directory
+    mode: '0755'
+
+- name: Link the image
+  become: yes
+  file:
+    src: /usr/share/ipxe/undionly.kpxe
+    dest: /var/lib/tftpboot/undionly.kpxe
+    force: yes
+    state: link
+
+- name: Copy undionly.kpxe chainboot
+  copy:
+    src: /usr/share/ipxe/undionly.kpxe
+    dest: /var/lib/tftpboot/undionly.kpxe
+    # owner: root
+    # group: root
+    mode: "0644"
+    remote_src: yes
+
+# - name: Remove symlink
+#   file:
+#     path: /var/lib/tftpboot
+#     state: absent
+
+# - name: Create tftpboot directory
+#   ansible.builtin.file:
+#     path: /var/lib/tftpboot
+#     state: directory
+#     owner: root
+#     group: root
+#     mode: '0644'
+
+# - name: Link the image
+#   ansible.builtin.file:
+#     src: /usr/share/ipxe/undionly.kpxe
+#     dest: /var/lib/tftpboot
+#     force: yes
+#     state: link

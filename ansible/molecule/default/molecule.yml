@@ -68,27 +68,29 @@ platforms:
   #   groups:
   #     - BASTION
   #     - ALL
-  - name: dhcp
-    box: fedora/33-cloud-base
-    box_version: 33.20201019.0
-    memory: 1024
-    cpus: 1
-    config_options:
-      ssh.keep_alive: yes
-      ssh.remote_user: "'vagrant'"
-    # interfaces:
-    #   - network_name: forwarded_port
-    #     guest: 53
-    #     host: 53
-    #   - network_name: private_network
-    #     auto_config: yes
-    #     type: static
-    #     ip: 192.168.121.253
-    instance_raw_config_args:
-      - 'vagrant.plugins = ["vagrant-libvirt"]'
-    groups:
-      - DHCP
-      - ALL
+
+  # - name: dhcp
+  #   box: fedora/33-cloud-base
+  #   box_version: 33.20201019.0
+  #   memory: 1024
+  #   cpus: 1
+  #   config_options:
+  #     ssh.keep_alive: yes
+  #     ssh.remote_user: "'vagrant'"
+  #   # interfaces:
+  #   #   - network_name: forwarded_port
+  #   #     guest: 53
+  #   #     host: 53
+  #   #   - network_name: private_network
+  #   #     auto_config: yes
+  #   #     type: static
+  #   #     ip: 192.168.121.253
+  #   instance_raw_config_args:
+  #     - 'vagrant.plugins = ["vagrant-libvirt"]'
+  #   groups:
+  #     - DHCP
+  #     - ALL
+
   # - name: dns
   #   box: fedora/33-cloud-base
   #   box_version: 33.20201019.0
@@ -111,6 +113,20 @@ platforms:
   #   groups:
   #     - DNS
   #     - ALL
+
+  - name: pxe
+    box: fedora/33-cloud-base
+    box_version: 33.20201019.0
+    memory: 1024
+    cpus: 2
+    config_options:
+      ssh.keep_alive: yes
+      ssh.remote_user: "'vagrant'"
+    instance_raw_config_args:
+      - 'vagrant.plugins = ["vagrant-libvirt"]'
+    groups:
+      - PXE
+      - ALL
 
 provisioner:
   name: ansible
