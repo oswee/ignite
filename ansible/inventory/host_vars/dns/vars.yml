@@ -3,4 +3,6 @@
 hostname: 'dns'
 host_octet: '251'
 ansible_python_interpreter: /usr/bin/python3.9
-mac: "7b:08:73:aa:e1:c5"
+mac: "56:90:01:22:e9:05"
+become_user: "ansible"
+dns_network_interface: "eth1"

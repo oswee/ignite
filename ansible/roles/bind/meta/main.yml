@@ -49,3 +49,5 @@ galaxy_info:
 
 dependencies:
 - name: dzintars.ansible.bind
+  vars:
+    network_interface_name: '{{ dns_network_interface }}'
