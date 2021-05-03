@@ -6,4 +6,4 @@
   gather_facts: yes
 
   roles:
-    - role: bind
+    - role: haproxy
