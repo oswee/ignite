@@ -2,7 +2,8 @@
 # handlers file for roles/haproxy
 
 - name: Restart HAProxy
-  service:
+  become: yes
+  ansible.builtin.systemd:
     name: haproxy
     state: restarted
 

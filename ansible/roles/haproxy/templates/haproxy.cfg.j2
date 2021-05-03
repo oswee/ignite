@@ -1,5 +1,4 @@
 # This configuration is for my personal local dev-test needs only.
-# Please use `haproxy.bastion.cf.j2` to set up the OpenShift cluster.
 
 global
   log 127.0.0.1 local2
@@ -190,21 +189,21 @@ backend my.{{ root_domain }}.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ my.{{ root_domain }}
-  server {{ name }} {{ network }}.{{ host }}:8081 check
+  server {{ hostname }} {{ network }}.{{ host }}:8081 check
 
 backend dev.{{ root_domain }}.backend
   balance roundrobin
   http-request add-header X-Forwarded-Proto https
   # option httpchk HEAD / h2,HTTP/1.1\r\nHost:\ dev.{{ root_domain }}
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ dev.{{ root_domain }}
-  server {{ name }} 127.0.0.1:3000 check
-  # server {{ name }} 127.0.0.1:3000 ssl verify none alpn h2,HTTP/1.1 check
+  server {{ hostname }} 127.0.0.1:3000 check
+  # server {{ hostname }} 127.0.0.1:3000 ssl verify none alpn h2,HTTP/1.1 check
 
 backend api.{{ root_domain }}.backend
   balance roundrobin
   http-request add-header X-Forwarded-Proto https
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ api.{{ root_domain }}
-  server {{ name }} 127.0.0.1:9090 check
+  server {{ hostname }} 127.0.0.1:9090 check
 
 backend jenkins.{{ root_domain }}.backend
   balance roundrobin
@@ -213,7 +212,7 @@ backend jenkins.{{ root_domain }}.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ jenkins.{{ root_domain }}
-  server {{ name }} {{ network }}.{{ host }}:9093 check
+  server {{ hostname }} {{ network }}.{{ host }}:9093 check
 
 backend vault.{{ root_domain }}.backend
   balance roundrobin
@@ -222,7 +221,7 @@ backend vault.{{ root_domain }}.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ vault.{{ root_domain }}
-  server {{ name }} {{ network }}.{{ host }}:8200 ssl verify none alpn h2,HTTP/1.1 check
+  server {{ hostname }} {{ network }}.{{ host }}:8200 ssl verify none alpn h2,HTTP/1.1 check
 
 backend s3.{{ root_domain }}.backend
   balance roundrobin
@@ -231,8 +230,8 @@ backend s3.{{ root_domain }}.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ s3.{{ root_domain }}
-  #server {{ name }} {{ network }}.{{ host }}:8001 ssl verify none alpn h2,HTTP/1.1 check
-  server {{ name }} {{ network }}.{{ host }}:8001 check
+  #server {{ hostname }} {{ network }}.{{ host }}:8001 ssl verify none alpn h2,HTTP/1.1 check
+  server {{ hostname }} {{ network }}.{{ host }}:8001 check
 
 backend cloud.{{ root_domain }}.backend
   balance roundrobin
@@ -241,7 +240,7 @@ backend cloud.{{ root_domain }}.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ cloud.{{ root_domain }}
-  server {{ name }} {{ network }}.{{ host }}:8085 check
+  server {{ hostname }} {{ network }}.{{ host }}:8085 check
 
 backend office.{{ root_domain }}.backend
   balance roundrobin
@@ -250,7 +249,7 @@ backend office.{{ root_domain }}.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ office.{{ root_domain }}
-  server {{ name }} {{ network }}.{{ host }}:9980 check
+  server {{ hostname }} {{ network }}.{{ host }}:9980 check
 
 backend registry.{{ root_domain }}.backend
   balance roundrobin
@@ -259,7 +258,7 @@ backend registry.{{ root_domain }}.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ registry.{{ root_domain }}
-  server {{ name }} {{ network }}.{{ host }}:9981 check
+  server {{ hostname }} {{ network }}.{{ host }}:9981 check
 
 backend dzintars.dev.backend
   balance roundrobin
@@ -267,7 +266,7 @@ backend dzintars.dev.backend
   compression algo gzip
   compression type text/html text/plain text/css
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ dzintars.dev
-  server {{ name }} {{ network }}.{{ host }}:8084 check
+  server {{ hostname }} {{ network }}.{{ host }}:8084 check
 
 backend merumore.com.backend
   balance roundrobin
@@ -276,7 +275,7 @@ backend merumore.com.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ my.{{ root_domain }}
-  server {{ name }} {{ network }}.{{ host }}:8082 check
+  server {{ hostname }} {{ network }}.{{ host }}:8082 check
 
 backend websocket.backend
   balance roundrobin
@@ -294,11 +293,11 @@ backend websocket.backend
   ## websocket health checking
   option httpchk GET / HTTP/1.1\r\nHost:\ api.{{ root_domain }}\r\nConnection:\ Upgrade\r\nUpgrade:\ websocket\r\nSec-WebSocket-Key:\ haproxy\r\nSec-WebSocket-Version:\ 13\r\nSec-WebSocket-Protocol:\ echo-protocol
   http-check expect status 101
-  server {{ name }} 127.0.0.1:9090 maxconn 30000 weight 10 cookie {{ name }} check
+  server {{ hostname }} 127.0.0.1:9090 maxconn 30000 weight 10 cookie {{ hostname }} check
   #server websrv2 192.168.10.12:8080 maxconn 30000 weight 10 cookie websrv2 check
 
 backend default.backend
-  server {{ name }} 127.0.0.1:8888 maxconn 50 check
+  server {{ hostname }} 127.0.0.1:8888 maxconn 50 check
   http-request set-header Host Default
 
   # Set custom response headers

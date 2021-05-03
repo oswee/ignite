@@ -5,12 +5,14 @@
 #     name: dzintars.haproxy
 
 - name: Ensure certs directory exists
+  become: yes
   file:
     path: "/etc/letsencrypt/live/{{ root_domain }}"
     state: directory
     mode: '0755'
 
 - name: Copy private SSL certificates from Ansible Vault
+  become: yes
   ansible.builtin.copy:
     content: "{{ tls_certs[0].content }}"
     dest: "/etc/letsencrypt/live/{{ root_domain }}/haproxy.pem"
@@ -19,6 +21,7 @@
     mode: "u=rw,g=r,o="
 
 - name: Copy haproxy.cfg and reload HAProxy
+  become: yes
   ansible.builtin.template:
     src: "haproxy.cfg.j2"
     dest: "/etc/haproxy/haproxy.cfg"
