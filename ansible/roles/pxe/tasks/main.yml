@@ -17,6 +17,7 @@
     state: link
 
 - name: Copy undionly.kpxe chainboot
+  become: yes
   copy:
     src: /usr/share/ipxe/undionly.kpxe
     dest: /var/lib/tftpboot/undionly.kpxe
