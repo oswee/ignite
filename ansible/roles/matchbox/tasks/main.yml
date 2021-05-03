@@ -24,6 +24,7 @@
 #     - "{{ rhcos_baseurl }}/{{ initramfs }}"
 
 - name: Copy profiles
+  become: yes
   template:
     # path: profiles
     src: '{{ item.src }}'
@@ -36,6 +37,7 @@
     - {src: 'profiles/master.json.j2', dest: 'master.json'}
 
 - name: Copy groups
+  become: yes
   template:
     # path: groups
     src: '{{ item.src }}'
@@ -55,6 +57,7 @@
     - Debug
 
 - name: Open firewall port
+  become: yes
   ansible.posix.firewalld:
     port: 8080/tcp
     permanent: yes
