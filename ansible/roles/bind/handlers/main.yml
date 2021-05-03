@@ -2,29 +2,34 @@
 # handlers file for roles/bind
 
 - name: enable named
-  systemd:
+  become: yes
+  ansible.builtin.systemd:
     name: named
     enabled: yes
 
 - name: start named
-  systemd:
+  become: yes
+  ansible.builtin.systemd:
     name: named
     state: started
 
 - name: restart named
-  systemd:
+  become: yes
+  ansible.builtin.systemd:
     state: restarted
     daemon_reload: yes
     name: named
 
 - name: restart firewalld
-  systemd:
+  become: yes
+  ansible.builtin.systemd:
     state: restarted
     daemon_reload: yes
     name: firewalld
 
 - name: restart NetworkManager
-  systemd:
+  become: yes
+  ansible.builtin.systemd:
     state: restarted
     daemon_reload: yes
     name: NetworkManager
