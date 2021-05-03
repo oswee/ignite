@@ -29,7 +29,7 @@ The other members are:
 
 ## Installation
 
-Install the requirements from the `cd ansible` directory:
+Install the requirements from the `cd ./ansible` directory:
 ```bash
 ansible-galaxy collection install -r collections.yml -f
 ```
@@ -64,7 +64,7 @@ molecule converge
 ```
 as well. It will do the full "provisioning" for testing purposes.
 
-To provision the infrastructure use
+To provision the infrastructure use from the `cd ./terraform` directory:
 ```bash
 terraform -chdir=environments/development/000base apply
 ```
