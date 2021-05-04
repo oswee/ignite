@@ -3,12 +3,12 @@ module "dhcp" {
   source = "../../../../../../dzintars/terraform-libvirt-domain"
 
   volume = {
-    name = "dhcp.${var.env_name}.${var.global_fqdn}"
+    name = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
     pool = data.terraform_remote_state.base.outputs.libvirt_pool.name
   }
 
   cloudinit = {
-    name = "dhcp.${var.env_name}.${var.global_fqdn}"
+    name = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
     dhcp = false
     interface_name = "eth0"
     addresses = "192.168.67.253/24"
@@ -23,8 +23,8 @@ module "dhcp" {
   vm = {
     user = "ansible"
     user_ssh_pub_key = tls_private_key.ansible.public_key_openssh
-    hostname = "dhcp"
-    domain   = "dhcp.${var.env_name}.${var.global_fqdn}"
+    hostname = var.instance_name
+    domain   = "${var.env_name}.${var.global_fqdn}"
   }
 
   vault = {
@@ -34,7 +34,7 @@ module "dhcp" {
   }
 
   domain = {
-    name = "dhcp.${var.env_name}.${var.global_fqdn}"
+    name = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
     memory = "1024"
     vcpu   = "2"
   }
