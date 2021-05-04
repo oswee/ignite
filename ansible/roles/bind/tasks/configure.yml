@@ -1,8 +1,8 @@
 ---
 # tasks file for roles/bind
-- name: Set a hostname
-  ansible.builtin.hostname:
-    name: dns1
+# - name: Set a hostname
+#   ansible.builtin.hostname:
+#     name: dns1
 
 - name: Copy Bind configuration
   template:
@@ -43,7 +43,7 @@
 
 - name: Add an Ethernet connection with static IP configuration
   nmcli:
-    conn_name: eth1
+    conn_name: eth0
     type: ethernet
     dns4: '{{ cluster_network }}.{{ host_octet | default("254") }}'
     dns4_search: '{{ cluster_name }}.{{ dns_domain_name | default("example.com") }}'
