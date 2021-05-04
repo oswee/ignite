@@ -6,7 +6,7 @@ resource "null_resource" "pxe_config" {
   provisioner "remote-exec" {
     inline = ["echo Waiting for SSH..."]
     connection {
-      host        = "${var.instance_name}"
+      host        = var.instance_name
       type        = "ssh"
       user        = "ansible"
       private_key = tls_private_key.ansible.private_key_pem
@@ -16,7 +16,7 @@ resource "null_resource" "pxe_config" {
   # https://www.digitalocean.com/community/tutorials/how-to-use-ansible-with-terraform-for-configuration-management
   provisioner "local-exec" {
     working_dir = "../../../../ansible"
-    command = <<EOT
+    command     = <<EOT
       ansible-playbook playbooks/pxe.yml
     EOT
   }

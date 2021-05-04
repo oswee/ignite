@@ -1,10 +1,10 @@
-env_name = "prod"
-env_layer = "010dhcp"
+env_name    = "prod"
+env_layer   = "010dhcp"
 global_fqdn = "oswee.com"
 
 /* qemu_uri = "qemu:///system" */
 
-domain       = {
+domain = {
   name = "oswee.com"
 }
 cluster_name = "ocp"

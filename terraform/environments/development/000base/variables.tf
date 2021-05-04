@@ -1,13 +1,13 @@
 variable "env_name" {
   description = "Environment name"
-  type = string
-  default = "dev"
+  type        = string
+  default     = "dev"
 }
 
 variable "env_layer" {
   description = ""
-  type = string
-  default = "000base"
+  type        = string
+  default     = "000base"
 }
 
 variable "addresses" {
@@ -18,13 +18,13 @@ variable "addresses" {
 
 variable "global_fqdn" {
   description = ""
-  type = string
-  default = "example.com"
+  type        = string
+  default     = "example.com"
 }
 
 variable "global_libvirt_pool_path" {
   description = ""
-  type = string
-  default = "/var/lib/libvirt/pools"
+  type        = string
+  default     = "/var/lib/libvirt/pools"
 }
 

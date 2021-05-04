@@ -1,9 +1,9 @@
 variable "domain" {
   description = "Domain e.g. 'example.com'"
-  type        = object({
+  type = object({
     name = string
   })
-  default     = {
+  default = {
     name = "example.local"
   }
 }

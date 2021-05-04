@@ -8,11 +8,11 @@ module "dhcp" {
   }
 
   cloudinit = {
-    name = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
-    dhcp = false
+    name           = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
+    dhcp           = false
     interface_name = "eth0"
-    addresses = "192.168.67.253/24"
-    gateway   = "192.168.67.1"
+    addresses      = "192.168.67.253/24"
+    gateway        = "192.168.67.1"
     nameservers = {
       ns1 = "1.1.1.1"
       ns2 = "9.9.9.9"
@@ -21,10 +21,10 @@ module "dhcp" {
   }
 
   vm = {
-    user = "ansible"
+    user             = "ansible"
     user_ssh_pub_key = tls_private_key.ansible.public_key_openssh
-    hostname = var.instance_name
-    domain   = "${var.env_name}.${var.global_fqdn}"
+    hostname         = var.instance_name
+    domain           = "${var.env_name}.${var.global_fqdn}"
   }
 
   vault = {
@@ -34,14 +34,14 @@ module "dhcp" {
   }
 
   domain = {
-    name = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
+    name   = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
     memory = "1024"
     vcpu   = "2"
   }
 
   network = {
-    name = data.terraform_remote_state.base.outputs.libvirt_network.name
-    mac  = "3a:72:7b:74:25:b4"
+    name           = data.terraform_remote_state.base.outputs.libvirt_network.name
+    mac            = "3a:72:7b:74:25:b4"
     wait_for_lease = false
   }
 }

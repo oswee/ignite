@@ -1,27 +1,27 @@
 variable "env_name" {
   description = "Environment name"
-  type = string
-  default = "prod"
+  type        = string
+  default     = "prod"
 }
 
 variable "global_fqdn" {
   description = ""
-  type = string
-  default = "example.com"
+  type        = string
+  default     = "example.com"
 }
 
 variable "ansible_ssh_key_name" {
   description = ""
-  type = string
-  default = "ansible_dhcp_dev_ecdsa"
+  type        = string
+  default     = "ansible_dhcp_dev_ecdsa"
 }
 
 variable "domain" {
   description = "Domain e.g. 'example.com'"
-  type        = object({
+  type = object({
     name = string
   })
-  default     = {
+  default = {
     name = "example.local"
   }
 }

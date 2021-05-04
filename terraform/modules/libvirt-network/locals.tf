@@ -1,6 +1,6 @@
 locals {
   network = defaults(var.network, {
-    name      = terraform.workspace
+    name = terraform.workspace
   })
 }
 

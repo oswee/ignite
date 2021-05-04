@@ -1,6 +1,6 @@
 /* qemu_uri = "qemu:///system" */
 
-domain       = {
+domain = {
   name = "oswee.com"
 }
 cluster_name = "ocp"

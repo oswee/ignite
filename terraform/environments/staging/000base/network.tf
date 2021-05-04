@@ -1,9 +1,9 @@
 module "libvirt_network" {
   source    = "../../modules/libvirt-network"
   addresses = var.addresses
-  network   = {
-    name    = "${terraform.workspace}-${var.env_name}"
+  network = {
+    name = "${terraform.workspace}-${var.env_name}"
   }
-  domain    = "${var.env_name}.${var.global_fqdn}"
+  domain = "${var.env_name}.${var.global_fqdn}"
 }
 

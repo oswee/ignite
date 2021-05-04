@@ -13,7 +13,7 @@ module "pxe" {
     interface_name = "eth0"
     addresses      = null
     gateway        = null
-    nameservers    = {
+    nameservers = {
       ns1 = null
       ns2 = null
       ns3 = null
@@ -21,10 +21,10 @@ module "pxe" {
   }
 
   vm = {
-    user = "ansible"
+    user             = "ansible"
     user_ssh_pub_key = tls_private_key.ansible.public_key_openssh
-    hostname = var.instance_name
-    domain   = "${var.env_name}.${var.global_fqdn}"
+    hostname         = var.instance_name
+    domain           = "${var.env_name}.${var.global_fqdn}"
   }
 
   vault = {
@@ -34,14 +34,14 @@ module "pxe" {
   }
 
   domain = {
-    name = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
+    name   = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
     memory = "1024"
     vcpu   = "2"
   }
 
   network = {
-    name = data.terraform_remote_state.base.outputs.libvirt_network.name
-    mac  = "f4:ce:30:a8:12:93"
+    name           = data.terraform_remote_state.base.outputs.libvirt_network.name
+    mac            = "f4:ce:30:a8:12:93"
     wait_for_lease = false
   }
 }

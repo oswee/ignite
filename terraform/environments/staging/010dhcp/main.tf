@@ -10,11 +10,11 @@ module "dhcp" {
   }
 
   cloudinit = {
-    name = "dhcp.${terraform.workspace}.oswee.com"
-    dhcp = false
+    name           = "dhcp.${terraform.workspace}.oswee.com"
+    dhcp           = false
     interface_name = "eth0"
-    addresses = "192.168.67.253/24"
-    gateway   = "192.168.67.1"
+    addresses      = "192.168.67.253/24"
+    gateway        = "192.168.67.1"
     nameservers = {
       ns1 = "1.1.1.1"
       ns2 = "9.9.9.9"
@@ -23,10 +23,10 @@ module "dhcp" {
   }
 
   vm = {
-    user = "ansible"
+    user             = "ansible"
     user_ssh_pub_key = tls_private_key.ansible.public_key_openssh
-    hostname = "dhcp"
-    domain   = "${terraform.workspace}.oswee.com"
+    hostname         = "dhcp"
+    domain           = "${terraform.workspace}.oswee.com"
   }
 
   vault = {
@@ -36,14 +36,14 @@ module "dhcp" {
   }
 
   domain = {
-    name = "dhcp"
+    name   = "dhcp"
     memory = "1024"
     vcpu   = "2"
   }
 
   network = {
-    name = module.libvirt_network.name
-    mac  = "3a:72:7b:74:25:b4"
+    name           = module.libvirt_network.name
+    mac            = "3a:72:7b:74:25:b4"
     wait_for_lease = false
   }
 
@@ -67,7 +67,7 @@ resource "null_resource" "dhcp_config" {
   # https://www.digitalocean.com/community/tutorials/how-to-use-ansible-with-terraform-for-configuration-management
   provisioner "local-exec" {
     working_dir = "../../../ansible"
-    command = <<EOT
+    command     = <<EOT
       ansible-playbook playbooks/dhcp.yml
     EOT
   }

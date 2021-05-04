@@ -17,7 +17,7 @@
 
 variable "network" {
   description = ""
-  type        = object({
+  type = object({
     name = optional(string)
   })
 }
@@ -58,10 +58,10 @@ variable "dhcp" {
 
 variable "dns" {
   description = ""
-  type        = object({
+  type = object({
     enabled = bool
   })
-  default     = {
+  default = {
     enabled = false
   }
 }

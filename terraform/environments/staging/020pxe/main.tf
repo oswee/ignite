@@ -10,11 +10,11 @@ module "pxe" {
   }
 
   cloudinit = {
-    name = "pxe.${terraform.workspace}.oswee.com"
-    dhcp = true
+    name           = "pxe.${terraform.workspace}.oswee.com"
+    dhcp           = true
     interface_name = "eth0"
-    addresses = "192.168.67.252/24"
-    gateway   = "192.168.67.1"
+    addresses      = "192.168.67.252/24"
+    gateway        = "192.168.67.1"
     nameservers = {
       ns1 = "1.1.1.1"
       ns2 = "9.9.9.9"
@@ -23,10 +23,10 @@ module "pxe" {
   }
 
   vm = {
-    user = "ansible"
+    user             = "ansible"
     user_ssh_pub_key = tls_private_key.ansible.public_key_openssh
-    hostname = "pxe"
-    domain   = "${terraform.workspace}.oswee.com"
+    hostname         = "pxe"
+    domain           = "${terraform.workspace}.oswee.com"
   }
 
   vault = {
@@ -36,14 +36,14 @@ module "pxe" {
   }
 
   domain = {
-    name = "pxe"
+    name   = "pxe"
     memory = "1024"
     vcpu   = "2"
   }
 
   network = {
-    name = module.libvirt_network.name
-    mac  = "f4:ce:30:a8:12:93"
+    name           = module.libvirt_network.name
+    mac            = "f4:ce:30:a8:12:93"
     wait_for_lease = true
   }
 }
