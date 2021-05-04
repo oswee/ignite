@@ -23,8 +23,8 @@ module "dns" {
   vm = {
     user = "ansible"
     user_ssh_pub_key = tls_private_key.ansible.public_key_openssh
-    hostname = "${var.instance_name}"
-    domain   = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
+    hostname = var.instance_name
+    domain   = "${var.env_name}.${var.global_fqdn}"
   }
 
   vault = {
