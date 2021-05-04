@@ -10,6 +10,12 @@ variable "global_fqdn" {
   default = "example.com"
 }
 
+variable "instance_name" {
+  description = ""
+  type = string
+  default = "dhcp"
+}
+
 variable "ansible_ssh_key_name" {
   description = ""
   type = string
@@ -29,7 +35,7 @@ variable "domain" {
 variable "cluster_name" {
   description = "Name of the host e.g. [cluster_name].example.com"
   type        = string
-  default     = "ocp"
+  default     = "dev"
 }
 
 variable "addresses" {
