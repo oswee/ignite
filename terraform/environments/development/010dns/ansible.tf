@@ -6,7 +6,7 @@ resource "null_resource" "dns_config" {
   provisioner "remote-exec" {
     inline = ["echo Waiting for SSH..."]
     connection {
-      host        = "dns"
+      host        = var.instance_name
       type        = "ssh"
       user        = "ansible"
       private_key = tls_private_key.ansible.private_key_pem
