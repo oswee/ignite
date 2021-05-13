@@ -13,12 +13,11 @@ variable "global_fqdn" {
 variable "instance_name" {
   description = ""
   type        = string
-  default     = "dns"
+  default     = "ns1"
 }
 
 variable "ansible_ssh_key_name" {
   description = ""
   type        = string
-  default     = "ansible_dns_dev_ecdsa"
+  default     = "ansible_ns1_dev_ecdsa"
 }
-

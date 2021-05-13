@@ -14,4 +14,3 @@ module "libvirt_network" {
   }
   domain = "${var.env_name}.${var.global_fqdn}"
 }
-

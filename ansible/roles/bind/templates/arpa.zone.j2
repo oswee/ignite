@@ -1,14 +1,14 @@
 $TTL 900
 
-@   IN  SOA {{ hostvars['dns'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.    hostmaster.{{ cluster_name }}.{{ dns_domain_name }}. (
+@   IN  SOA {{ hostvars['ns1'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.    hostmaster.{{ cluster_name }}.{{ dns_domain_name }}. (
         2019062001  ; serial number
         3H          ; refresh interval (3 hours)
         30M         ; retry interval (30 minutes)
         1W          ; expiry period (2 weeks)
         3h )        ; negative TTL (1 week)
 
-                                       IN  NS  {{ hostvars['dns'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
-{{ hostvars['dns'].host_octet }}       IN  PTR {{ hostvars['dns'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
+                                       IN  NS  {{ hostvars['ns1'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
+{{ hostvars['ns1'].host_octet }}       IN  PTR {{ hostvars['ns1'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
 {{ hostvars['dhcp'].host_octet }}      IN  PTR {{ hostvars['dhcp'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
 {{ hostvars['pxe'].host_octet }}       IN  PTR {{ hostvars['pxe'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
 {{ hostvars['bastion'].host_octet }}   IN  PTR {{ hostvars['bastion'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
