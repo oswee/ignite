@@ -1,6 +1,6 @@
 ---
 
-hostname: 'dns'
+hostname: 'ns1'
 host_octet: '251'
 ansible_python_interpreter: /usr/bin/python3.9
 mac: "56:90:01:22:e9:05"

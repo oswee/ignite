@@ -8,7 +8,7 @@ dhcp
 pxe
 
 [DNS]
-dns
+ns1
 
 # [JENKINS]
 # jenkins
