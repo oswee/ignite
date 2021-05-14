@@ -1,0 +1,22 @@
+---
+# - name: Converge
+#   hosts: all
+#   tasks:
+#     - name: "Include ansible"
+#       include_role:
+#         name: "ansible"
+
+- name: Workstation
+  import_playbook: ../../playbooks/workstation.yml
+
+- name: Bastion
+  import_playbook: ../../playbooks/bastion.yml
+
+- name: DHCP
+  import_playbook: ../../playbooks/dhcp.yml
+
+- name: PXE
+  import_playbook: ../../playbooks/pxe.yml
+
+- name: DNS
+  import_playbook: ../../playbooks/dns.yml

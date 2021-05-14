@@ -18,9 +18,7 @@ resource "null_resource" "dns_config" {
   # https://www.digitalocean.com/community/tutorials/how-to-use-ansible-with-terraform-for-configuration-management
   provisioner "local-exec" {
     working_dir = "../../../../ansible"
-    command     = <<EOT
-      ansible-playbook playbooks/dns.yml
-    EOT
+    command     = "ansible-playbook -i environments/development playbooks/dns.yml"
   }
 
   depends_on = [

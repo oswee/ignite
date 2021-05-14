@@ -1,0 +1,164 @@
+---
+dependency:
+  name: galaxy
+  options:
+    # ignore-certs: True
+    # ignore-errors: True
+    # role-file: requirements.yml
+    requirements-file: collections.yml
+
+driver:
+  name: vagrant
+  provider:
+    name: libvirt
+    type: libvirt
+    driver: kvm
+
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+
+platforms:
+  # - name: workstation
+  #   box: fedora/33-cloud-base
+  #   raw_config_args:
+  #     - "cpu_mode = 'host-passthrough'"
+  #     - "video_type = 'virtio'"
+  #   memory: 4096
+  #   cpus: 4
+  #   config_options:
+  #     ssh.keep_alive: yes
+  #     ssh.remote_user: "'vagrant'"
+  #   # provider_options:
+  #   #   video_type: "'vga'"
+  #   interfaces:
+  #     - network_name: private_network
+  #       auto_config: yes
+  #       # dev: "virbr0"
+  #       # type: "bridge"
+  #       # mode: "bridge"
+  #       type: static
+  #       ip: 192.168.121.2
+  #       options:
+  #         append_platform_to_hostname: yes
+  #   # private_ip: 192.168.121.2
+  #   instance_raw_config_args:
+  #     - 'vagrant.plugins = ["vagrant-libvirt"]'
+  #     # - 'vm.hostname = "workstation"'
+  #     # - "vm.network 'private_network', ip: '192.168.121.2'"
+  #     - "ssh.insert_key = false"
+  #   groups:
+  #     - WORKSTATION
+  #     - ALL
+  # - name: bastion
+  #   box: fedora/33-cloud-base
+  #   memory: 2048
+  #   cpus: 2
+  #   config_options:
+  #     ssh.keep_alive: yes
+  #     ssh.remote_user: "'vagrant'"
+  #   interfaces:
+  #     - auto_config: yes
+  #       network_name: private_network
+  #       type: static
+  #       ip: 192.168.121.254
+  #   instance_raw_config_args:
+  #     - 'vagrant.plugins = ["vagrant-libvirt"]'
+  #   groups:
+  #     - BASTION
+  #     - ALL
+
+  # - name: dhcp
+  #   box: fedora/33-cloud-base
+  #   box_version: 33.20201019.0
+  #   memory: 1024
+  #   cpus: 1
+  #   config_options:
+  #     ssh.keep_alive: yes
+  #     ssh.remote_user: "'vagrant'"
+  #   # interfaces:
+  #   #   - network_name: forwarded_port
+  #   #     guest: 53
+  #   #     host: 53
+  #   #   - network_name: private_network
+  #   #     auto_config: yes
+  #   #     type: static
+  #   #     ip: 192.168.121.253
+  #   instance_raw_config_args:
+  #     - 'vagrant.plugins = ["vagrant-libvirt"]'
+  #   groups:
+  #     - DHCP
+  #     - ALL
+
+  # - name: dns
+  #   box: fedora/33-cloud-base
+  #   box_version: 33.20201019.0
+  #   memory: 2048
+  #   cpus: 2
+  #   config_options:
+  #     ssh.keep_alive: yes
+  #     ssh.remote_user: "'vagrant'"
+  #   interfaces:
+  #     - network_name: forwarded_port
+  #       guest: 53
+  #       host: 53
+  #   #   - network_name: private_network
+  #   #     auto_config: yes
+  #   #     type: static
+  #   #     ip: 192.168.121.253
+  #   instance_raw_config_args:
+  #     - 'vagrant.plugins = ["vagrant-libvirt"]'
+  #     - 'vm.network "private_network", ip: "192.168.124.253"'
+  #   groups:
+  #     - DNS
+  #     - ALL
+
+  - name: pxe
+    box: fedora/33-cloud-base
+    box_version: 33.20201019.0
+    memory: 1024
+    cpus: 2
+    config_options:
+      ssh.keep_alive: yes
+      ssh.remote_user: "'vagrant'"
+    instance_raw_config_args:
+      - 'vagrant.plugins = ["vagrant-libvirt"]'
+    groups:
+      - PXE
+      - ALL
+
+provisioner:
+  name: ansible
+  inventory:
+    links:
+      hosts: ../../environments/production/hosts
+      group_vars: ../../environments/production/group_vars/
+      host_vars: ../../environments/production/host_vars/
+  # config_options:
+  #   default:
+  #     vault_password_file: "$HOME/.ansible/.vault.key"  # Make sure you have this file
+  playbooks:
+    converge: converge.yml
+    # create: create.yml
+  options:
+    vvv: yes
+    vault-id: '@$HOME/.ansible/.vault.key'
+  connection_options:
+    ansible_ssh_user: vagrant
+    ansible_become: yes
+    ansible_connection: smart  # Override the connection: local
+  env:
+    ANSIBLE_CONFIG: ../../ansible.cfg
+    ANSIBLE_ROLES_PATH: "../../roles/"
+    ANSIBLE_COLLECTIONS_PATHS: "../../collections"
+  log: yes
+  lint: |
+    set -e
+    ansible-lint
+
+verifier:
+  name: ansible
+  lint: |
+    set -e
+    ansible-lint
