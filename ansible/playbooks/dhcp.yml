@@ -1,7 +1,7 @@
 ---
 
 - name: Configure DHCP server
-  hosts: DHCP
+  hosts: dhcpservers
   become: no
   gather_facts: yes
 

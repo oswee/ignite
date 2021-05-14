@@ -1,7 +1,7 @@
 ---
 
 - name: Configure DNS server
-  hosts: DNS
+  hosts: nameservers
   become: no
   gather_facts: yes
 

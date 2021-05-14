@@ -1,49 +1,49 @@
-[WORKSTATION]
+[workstations]
 workstation
 
-[DHCP]
+[dhcpservers]
 dhcp
 
-[PXE]
+[pxeservers]
 pxe
 
-[DNS]
+[nameservers]
 ns1
 
-# [JENKINS]
+# [buildservers]
 # jenkins
 
-[BASTION]
+[bastions]
 bastion
 
-[INFRA:children]
-DNS
+[infra:children]
+nameservers
 
-[BOOTSTRAP]
+[bootservers]
 bootstrap
 
-[MASTER]
+[masters]
 master-0
 master-1
 master-2
 
-[INFNOD]
+[infnodes]
 infnod-0
 infnod-1
 
-[CPTNOD]
+[cptnodes]
 cptnod-0
 cptnod-1
 cptnod-2
 
-[ALL:children]
-WORKSTATION
-BOOTSTRAP
-DNS
-DHCP
-PXE
-BASTION
-# JENKINS
-MASTER
-INFNOD
-CPTNOD
+[all:children]
+workstations
+bootservers
+nameservers
+dhcpservers
+pxeservers
+bastions
+# jenkins
+masters
+infnodes
+cptnodes

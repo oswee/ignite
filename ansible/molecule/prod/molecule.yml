@@ -49,8 +49,9 @@ platforms:
   #     # - "vm.network 'private_network', ip: '192.168.121.2'"
   #     - "ssh.insert_key = false"
   #   groups:
-  #     - WORKSTATION
-  #     - ALL
+  #     - workstations
+  #     - all
+
   # - name: bastion
   #   box: fedora/33-cloud-base
   #   memory: 2048
@@ -66,8 +67,8 @@ platforms:
   #   instance_raw_config_args:
   #     - 'vagrant.plugins = ["vagrant-libvirt"]'
   #   groups:
-  #     - BASTION
-  #     - ALL
+  #     - bastions
+  #     - all
 
   # - name: dhcp
   #   box: fedora/33-cloud-base
@@ -88,8 +89,8 @@ platforms:
   #   instance_raw_config_args:
   #     - 'vagrant.plugins = ["vagrant-libvirt"]'
   #   groups:
-  #     - DHCP
-  #     - ALL
+  #     - dhcpservers
+  #     - all
 
   # - name: dns
   #   box: fedora/33-cloud-base
@@ -111,8 +112,8 @@ platforms:
   #     - 'vagrant.plugins = ["vagrant-libvirt"]'
   #     - 'vm.network "private_network", ip: "192.168.124.253"'
   #   groups:
-  #     - DNS
-  #     - ALL
+  #     - nameservers
+  #     - all
 
   - name: pxe
     box: fedora/33-cloud-base
@@ -125,8 +126,8 @@ platforms:
     instance_raw_config_args:
       - 'vagrant.plugins = ["vagrant-libvirt"]'
     groups:
-      - PXE
-      - ALL
+      - pxeservers
+      - all
 
 provisioner:
   name: ansible
