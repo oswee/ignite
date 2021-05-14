@@ -1,7 +1,7 @@
 ---
 
 hostname: 'ns1'
-host_octet: '251'
+host_octet: '253'
 ansible_python_interpreter: /usr/bin/python3.9
 mac: "56:90:01:22:e9:05"
 become_user: "ansible"
