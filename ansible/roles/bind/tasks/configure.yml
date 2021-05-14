@@ -45,16 +45,16 @@
   notify:
     - restart NetworkManager
 
-- name: Add an Ethernet connection with static IP configuration
-  become: yes
-  nmcli:
-    conn_name: '{{ network_interface_name }}'
-    type: ethernet
-    dns4: '{{ cluster_network }}.{{ host_octet | default("253") }}'
-    dns4_search: '{{ cluster_name }}.{{ dns_domain_name | default("example.com") }}'
-    state: present
-  notify:
-    - restart NetworkManager
+# - name: Add an Ethernet connection with static IP configuration
+#   become: yes
+#   nmcli:
+#     conn_name: '{{ network_interface_name }}'
+#     type: ethernet
+#     dns4: '{{ cluster_network }}.{{ host_octet | default("253") }}'
+#     dns4_search: '{{ cluster_name }}.{{ dns_domain_name | default("example.com") }}'
+#     state: present
+#   notify:
+#     - restart NetworkManager
 
 # - name: set qemu user in /etc/sysconfig/network-scripts/ifcfg-enp1s0
 #   lineinfile:
