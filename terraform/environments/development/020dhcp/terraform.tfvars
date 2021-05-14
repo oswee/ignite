@@ -1,5 +1,5 @@
-env_name      = "dev"
-env_layer     = "020dhcp"
-global_fqdn   = "oswee.com"
-instance_name = "dhcp"
-
+env_name       = "dev"
+env_layer      = "020dhcp"
+global_fqdn    = "oswee.com"
+instance_name  = "dhcp"
+interface_name = "eth0"

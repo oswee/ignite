@@ -3,7 +3,11 @@
 ansible_python_interpreter: /usr/bin/python3.9
 tls_certs: '{{ vault_tls_certs }}'
 dns_domain_name: '{{ vault_dns_domain_name }}'
+dns_domain_search: '{{ vault_dns_domain_name }}'
 cluster_name: 'dev'
-network: '192.168.67'
 cluster_network: '192.168.67'
 gateway_host_octet: '1'
+
+
+# These should be removed:
+network: '192.168.67'

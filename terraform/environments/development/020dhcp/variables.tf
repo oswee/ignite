@@ -38,6 +38,12 @@ variable "cluster_name" {
   default     = "dev"
 }
 
+variable "interface_name" {
+  description = "Primary network interface name"
+  type        = string
+  default     = "eth0"
+}
+
 variable "addresses" {
   description = ""
   type        = list(string)
