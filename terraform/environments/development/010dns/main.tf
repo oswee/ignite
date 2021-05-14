@@ -9,13 +9,13 @@ module "dns" {
 
   cloudinit = {
     name           = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
-    dhcp           = true
-    interface_name = "eth0"
-    addresses      = null
-    gateway        = null
+    dhcp           = false
+    interface_name = var.interface_name
+    addresses      = "192.168.67.253/24"
+    gateway        = "192.168.67.1"
     nameservers = {
-      ns1 = null
-      ns2 = null
+      ns1 = "1.1.1.1"
+      ns2 = "9.9.9.9"
       ns3 = null
     }
   }
