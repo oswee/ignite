@@ -21,3 +21,9 @@ variable "ansible_ssh_key_name" {
   type        = string
   default     = "ansible_ns1_dev_ecdsa"
 }
+
+variable "interface_name" {
+  description = "Primary network interface name"
+  type        = string
+  default     = "eth0"
+}

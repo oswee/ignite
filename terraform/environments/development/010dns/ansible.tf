@@ -3,6 +3,8 @@ resource "null_resource" "dns_config" {
   #   dhcp = module.dns
   # }
 
+  # Be sure your DNS can resolve the domain of this instance. Most likely you
+  # need to add temporary record to the /etc/hosts before applying this module.
   provisioner "remote-exec" {
     inline = ["echo Waiting for SSH..."]
     connection {

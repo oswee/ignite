@@ -1,7 +1,7 @@
 acl internal_nets { {{ cluster_network }}.0/24; };
 
 options {
-listen-on port 53 { 127.0.0.1; {{ cluster_network }}.{{ host_octet | default("254") }}; };
+listen-on port 53 { 127.0.0.1; {{ cluster_network }}.{{ host_octet | default("253") }}; };
   listen-on-v6 port 53 { ::1; };
 
   directory "/var/named";

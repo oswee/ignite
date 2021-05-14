@@ -1,7 +1,7 @@
 galaxy_info:
   author: Dzintars Klavins
   description: simple minimal bind9 server setup
-  company: Oswee
+  company: Dzintars
 
   # if the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -50,4 +50,4 @@ galaxy_info:
 dependencies:
 - name: dzintars.ansible.bind
   vars:
-    network_interface_name: '{{ dns_network_interface }}'
+    bind_network_interface_name: '{{ network_interface_name }}'
