@@ -1,10 +1,12 @@
 ---
 # tasks file for roles/bind
 # - name: Set a hostname
+#   become: yes
 #   ansible.builtin.hostname:
-#     name: dns1
+#     name: ns1
 
 - name: Copy Bind configuration
+  become: yes
   template:
     src: named.conf.j2
     dest: /etc/named.conf
@@ -15,6 +17,7 @@
   notify: restart named
 
 - name: Copy zone files
+  become: yes
   template:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
@@ -30,6 +33,7 @@
     - restart firewalld
 
 - name: Deploy resolv.conf template
+  become: yes
   template:
     src: 'resolv.conf.j2'
     dest: /etc/resolv.conf
@@ -42,10 +46,11 @@
     - restart NetworkManager
 
 - name: Add an Ethernet connection with static IP configuration
+  become: yes
   nmcli:
-    conn_name: eth0
+    conn_name: '{{ network_interface_name }}'
     type: ethernet
-    dns4: '{{ cluster_network }}.{{ host_octet | default("254") }}'
+    dns4: '{{ cluster_network }}.{{ host_octet | default("253") }}'
     dns4_search: '{{ cluster_name }}.{{ dns_domain_name | default("example.com") }}'
     state: present
   notify:
