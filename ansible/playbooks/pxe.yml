@@ -1,7 +1,7 @@
 ---
 
 - name: Configure PXE server
-  hosts: PXE
+  hosts: pxeservers
   become: no
   gather_facts: yes
 
