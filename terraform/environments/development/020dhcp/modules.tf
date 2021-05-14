@@ -10,13 +10,13 @@ module "dhcp" {
   cloudinit = {
     name           = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
     dhcp           = false
-    interface_name = "eth0"
-    addresses      = "192.168.67.253/24"
+    interface_name = var.interface_name
+    addresses      = "192.168.67.252/24"
     gateway        = "192.168.67.1"
     nameservers = {
-      ns1 = "1.1.1.1"
-      ns2 = "9.9.9.9"
-      ns3 = null
+      ns1 = "9.9.9.9"
+      ns2 = "1.1.1.1"
+      ns3 = "8.8.8.8"
     }
   }
 

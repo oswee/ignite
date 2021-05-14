@@ -1,8 +1,11 @@
 ---
 # defaults file for roles/dhcpd
 
-dhcp_network: "192.168.67"
-dhcp_domain_name: "oswee.com"
-dhcp_domain_search: "oswee.com"
+cluster_name: "ocp"
+cluster_network: "192.168.67"
+dns_domain_name: "example.com"
+dns_domain_search: "example.com"
 dhcpd_user: "dhcpd"
 dhcpd_group: "dhcpd"
+dhcp_network_interface: "eth0"
+gateway_host_octet: "1"

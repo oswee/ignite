@@ -8,9 +8,9 @@ resource "local_file" "ansible_ssh_priv_key" {
   filename        = pathexpand("~/.ssh/${var.ansible_ssh_key_name}")
   file_permission = "0600"
 
-  provisioner "local-exec" {
-    command = "ssh-add ${pathexpand("~/.ssh/${var.ansible_ssh_key_name}")}"
-  }
+  # provisioner "local-exec" {
+  #   command = "ssh-add ${pathexpand("~/.ssh/${var.ansible_ssh_key_name}")}"
+  # }
 
   provisioner "local-exec" {
     when = destroy

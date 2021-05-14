@@ -8,7 +8,7 @@ max-lease-time      14400;
 option              routers                 {{ cluster_network }}.{{ gateway_host_octet }};
 option              broadcast-address       {{ cluster_network }}.255;
 option              subnet-mask             255.255.255.0;
-option              domain-name-servers     {{ cluster_network }}.{{ hostvars['dns'].host_octet }},1.1.1.1;
+option              domain-name-servers     {{ cluster_network }}.{{ hostvars['ns1'].host_octet }},1.1.1.1;
 option              ntp-servers             time.cloudflare.com;
 option              domain-search           "{{ cluster_name }}.{{ dns_domain_name }}", "{{ dns_domain_name }}";
 option              domain-name             "{{ cluster_name }}.{{ dns_domain_name }}";
@@ -19,16 +19,16 @@ subnet {{ cluster_network }}.0 netmask 255.255.255.0 {
     pool {
         range {{ cluster_network }}.2 {{ cluster_network }}.240;
 
+        host  {{ hostvars['ns1'].hostname }} {
+            hardware ethernet {{ hostvars['ns1'].mac }};
+            fixed-address {{ cluster_network }}.{{ hostvars['ns1'].host_octet }};
+            option host-name "{{ hostvars['ns1'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}";
+        }
+
         host  {{ hostvars['pxe'].hostname }} {
             hardware ethernet {{ hostvars['pxe'].mac }};
             fixed-address {{ cluster_network }}.{{ hostvars['pxe'].host_octet }};
             option host-name "{{ hostvars['pxe'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}";
-        }
-
-        host  {{ hostvars['dns'].hostname }} {
-            hardware ethernet {{ hostvars['dns'].mac }};
-            fixed-address {{ cluster_network }}.{{ hostvars['dns'].host_octet }};
-            option host-name "{{ hostvars['dns'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}";
         }
 
         host  {{ hostvars['bastion'].hostname }} {
@@ -95,7 +95,7 @@ subnet {{ cluster_network }}.0 netmask 255.255.255.0 {
         deny unknown-clients;
 
         if exists user-class and option user-class = "iPXE" {
-            filename "http://{{ hostvars['bastion'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}:8080/boot.ipxe";
+            filename "http://{{ hostvars['pxe'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}:8080/boot.ipxe";
         } else {
             filename "undionly.kpxe";
         }
