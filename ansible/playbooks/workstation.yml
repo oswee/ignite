@@ -10,10 +10,10 @@
     - role: minio
       tags:
         - minio
-    - role: dzintars.ansible.vault
+    - role: oswee.ansible.vault
       tags:
         - vault
-    - role: dzintars.ansible.terraform
+    - role: oswee.ansible.terraform
       tags:
         - terraform
       vars:

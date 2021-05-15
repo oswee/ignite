@@ -2,6 +2,6 @@
 
 collections:
   # - name: ssbarnea.molecule
-  - name: https://github.com/dzintars/ansible.git
+  - name: https://github.com/oswee/ansible.git
     version: master
     type: git

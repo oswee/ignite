@@ -48,4 +48,4 @@ galaxy_info:
     #       Maximum 20 tags per role.
 
 dependencies:
-- name: dzintars.ansible.haproxy
+- name: oswee.ansible.haproxy

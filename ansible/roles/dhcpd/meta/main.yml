@@ -48,4 +48,4 @@ galaxy_info:
     #       maximum 20 tags per role.
 
 dependencies:
-- name: dzintars.ansible.dhcpd
+- name: oswee.ansible.dhcpd
