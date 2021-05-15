@@ -1,6 +1,6 @@
 module "bastion" {
-  # source = "git@github.com:dzintars/terraform-libvirt-domain.git?ref=v0.0.1-alpha"
-  source = "../../../../../../dzintars/terraform-libvirt-domain"
+  # source = "git@github.com:oswee/terraform-libvirt-domain.git?ref=v0.0.1-alpha"
+  source = "../../../../../../oswee/terraform-libvirt-domain"
 
   volume = {
     name = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
