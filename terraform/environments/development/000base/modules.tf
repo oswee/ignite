@@ -6,6 +6,15 @@ module "libvirt_pool" {
   }
 }
 
+# module "management_network" {
+#   source    = "../../../modules/libvirt-network"
+#   addresses = ["192.168.66.0/24"]
+#   network = {
+#     name = "management"
+#   }
+#   domain = var.global_fqdn
+# }
+
 module "libvirt_network" {
   source    = "../../../modules/libvirt-network"
   addresses = var.addresses
