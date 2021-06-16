@@ -11,14 +11,14 @@ module "dhcp" {
     name           = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
     dhcp           = false
     interface_name = var.interface_name
-    addresses      = "192.168.67.252/24"
-    gateway        = "192.168.67.1"
     nameservers = {
-      ns1 = "9.9.9.9"
+      ns1 = "192.168.200.253"
       ns2 = "1.1.1.1"
-      ns3 = "8.8.8.8"
     }
   }
+
+  addresses = ["192.168.200.252/16"]
+  gateway   = "192.168.254.254"
 
   vm = {
     user             = "ansible"
@@ -40,7 +40,7 @@ module "dhcp" {
   }
 
   network = {
-    name           = data.terraform_remote_state.base.outputs.libvirt_network.name
+    name           = data.terraform_remote_state.base.outputs.management_network.name
     mac            = "3a:72:7b:74:25:b4"
     wait_for_lease = false
   }
