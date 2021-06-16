@@ -11,14 +11,15 @@ module "dns" {
     name           = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
     dhcp           = false
     interface_name = var.interface_name
-    addresses      = "192.168.67.253/24"
-    gateway        = "192.168.67.1"
     nameservers = {
       ns1 = "1.1.1.1"
       ns2 = "9.9.9.9"
       ns3 = null
     }
   }
+
+  addresses = ["192.168.200.253/16"]
+  gateway   = "192.168.254.254"
 
   vm = {
     user             = "ansible"
@@ -40,7 +41,7 @@ module "dns" {
   }
 
   network = {
-    name           = data.terraform_remote_state.base.outputs.libvirt_network.name
+    name           = data.terraform_remote_state.base.outputs.management_network.name
     mac            = "56:90:01:22:e9:05"
     wait_for_lease = false
   }
