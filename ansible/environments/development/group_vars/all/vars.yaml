@@ -7,9 +7,9 @@ tls_certs: '{{ vault_tls_certs }}'
 dns_domain_name: '{{ vault_dns_domain_name }}'
 dns_domain_search: '{{ vault_dns_domain_name }}'
 cluster_name: 'dev'
-cluster_network: '192.168.67'
-gateway_host_octet: '1'
+cluster_network: '192.168.200'
+gateway_host_octet: '254'
 
 
 # These should be removed:
-network: '192.168.67'
+network: '192.168.200'
