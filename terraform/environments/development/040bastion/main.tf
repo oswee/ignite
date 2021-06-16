@@ -11,14 +11,15 @@ module "bastion" {
     name           = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
     dhcp           = true
     interface_name = "eth0"
-    addresses      = null
-    gateway        = null
     nameservers = {
       ns1 = null
       ns2 = null
       ns3 = null
     }
   }
+
+  addresses = null
+  gateway   = null
 
   vm = {
     user             = "ansible"
@@ -40,7 +41,7 @@ module "bastion" {
   }
 
   network = {
-    name           = data.terraform_remote_state.base.outputs.libvirt_network.name
+    name           = data.terraform_remote_state.base.outputs.management_network.name
     mac            = "20:4b:76:ef:73:9b"
     wait_for_lease = false
   }
