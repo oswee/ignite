@@ -6,20 +6,33 @@ module "libvirt_pool" {
   }
 }
 
-# module "management_network" {
+module "management_network" {
+  source    = "../../../modules/libvirt-network"
+  mode      = "bridge"
+  bridge    = "virbr0"
+  addresses = null
+  network = {
+    name = "management"
+  }
+  domain = null
+}
+
+# module "development_network" {
 #   source    = "../../../modules/libvirt-network"
-#   addresses = ["192.168.66.0/24"]
+#   mode      = "bridge"
+#   bridge    = "virbr0"
+#   addresses = null
 #   network = {
-#     name = "management"
+#     name = "development"
 #   }
-#   domain = var.global_fqdn
+#   domain = null
 # }
 
-module "libvirt_network" {
-  source    = "../../../modules/libvirt-network"
-  addresses = var.addresses
-  network = {
-    name = "${var.env_name}.${var.global_fqdn}"
-  }
-  domain = "${var.env_name}.${var.global_fqdn}"
-}
+# module "libvirt_network" {
+#   source    = "../../../modules/libvirt-network"
+#   addresses = var.addresses
+#   network = {
+#     name = "${var.env_name}.${var.global_fqdn}"
+#   }
+#   domain = "${var.env_name}.${var.global_fqdn}"
+# }
