@@ -13,7 +13,7 @@ variable "env_layer" {
 variable "addresses" {
   description = ""
   type        = list(string)
-  default     = ["192.168.67.0/24"]
+  default     = ["192.168.200.0/24"]
 }
 
 variable "global_fqdn" {
