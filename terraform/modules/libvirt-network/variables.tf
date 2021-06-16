@@ -28,6 +28,12 @@ variable "mode" {
   default     = "nat"
 }
 
+variable "bridge" {
+  description = ""
+  type        = string
+  default     = null
+}
+
 variable "domain" {
   description = ""
   type        = string
@@ -37,7 +43,7 @@ variable "domain" {
 variable "addresses" {
   description = ""
   type        = list(string)
-  default     = ["192.168.65.0/24"]
+  default     = null
 }
 
 variable "autostart" {
