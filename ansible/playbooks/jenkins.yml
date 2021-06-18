@@ -1,0 +1,9 @@
+---
+
+- name: Configure Jenkins server
+  hosts: buildservers
+  become: no
+  gather_facts: yes
+
+  roles:
+    - role: jenkins

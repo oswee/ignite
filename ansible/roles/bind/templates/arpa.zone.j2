@@ -12,6 +12,7 @@ $TTL 900
 {{ hostvars['dhcp'].host_octet }}      IN  PTR {{ hostvars['dhcp'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
 {{ hostvars['pxe'].host_octet }}       IN  PTR {{ hostvars['pxe'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
 {{ hostvars['bastion'].host_octet }}   IN  PTR {{ hostvars['bastion'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
+{{ hostvars['jenkins'].host_octet }}   IN  PTR {{ hostvars['jenkins'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
 {{ hostvars['master-0'].host_octet }}  IN  PTR {{ hostvars['master-0'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
 {{ hostvars['master-1'].host_octet }}  IN  PTR {{ hostvars['master-1'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
 {{ hostvars['master-2'].host_octet }}  IN  PTR {{ hostvars['master-2'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.

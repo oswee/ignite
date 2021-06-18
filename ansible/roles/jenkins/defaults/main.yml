@@ -1,0 +1,3 @@
+---
+# defaults file for roles/jenkins
+ANSIBLE_FORCE_COLOR: yes

@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include roles/jenkins"
+      include_role:
+        name: "roles/jenkins"
