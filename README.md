@@ -77,3 +77,10 @@ to destroy the particular environment.
 Be sure to follow the order of the environment prefixes. 000 prefix should be
 provisioned first and only then 010 prefix can be provisioned. To decommision the
 environment use same logic but in reverse order. Destroy 010 first and then 000.
+
+### Workstation setup
+
+You can run single Ansible playbook role with
+```bash
+ansible-playbook -i environments/development playbooks/workstation.yml --tags golang --ask-vault-pass
+```
