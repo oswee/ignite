@@ -10,8 +10,8 @@ pxe
 [nameservers]
 ns1
 
-# [buildservers]
-# jenkins
+[buildservers]
+jenkins
 
 [bastions]
 bastion
@@ -43,7 +43,7 @@ nameservers
 dhcpservers
 pxeservers
 bastions
-# jenkins
+jenkins
 masters
 infnodes
 cptnodes

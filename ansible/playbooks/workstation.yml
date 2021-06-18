@@ -7,6 +7,11 @@
   become: no
 
   roles:
+    - role: oswee.ansible.golang
+      tags:
+        - golang
+      vars:
+        golang_version: 1.16.5
     - role: minio
       tags:
         - minio
