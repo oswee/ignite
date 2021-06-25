@@ -5,7 +5,7 @@ ddns-update-style   interim;
 default-lease-time  14400;
 max-lease-time      14400;
 
-option              routers                 192.168.254.{{ gateway_host_octet }};
+option              routers                 192.168.0.{{ gateway_host_octet }};
 option              broadcast-address       {{ cluster_network }}.255;
 option              subnet-mask             255.255.0.0;
 option              domain-name-servers     {{ cluster_network }}.{{ hostvars['ns1'].host_octet }},1.1.1.1;
