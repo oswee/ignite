@@ -71,3 +71,9 @@ variable "dns" {
     enabled = false
   }
 }
+
+variable "openvswitch" {
+  description = "Is openvswitch bridge used?"
+  type        = bool
+  default     = false
+}

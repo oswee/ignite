@@ -1,10 +1,8 @@
-resource "null_resource" "instance_config" {
+resource "null_resource" "storage_config" {
   # triggers = {
-  #   domain = module.domain
+  #   bastion = module.storage
   # }
 
-  # Be sure your DNS can resolve the domain of this instance. Most likely you
-  # need to add temporary record to the /etc/hosts before applying this module.
   provisioner "remote-exec" {
     inline = ["echo Waiting for SSH..."]
     connection {
@@ -18,12 +16,12 @@ resource "null_resource" "instance_config" {
   # https://www.digitalocean.com/community/tutorials/how-to-use-ansible-with-terraform-for-configuration-management
   provisioner "local-exec" {
     working_dir = "../../../../ansible"
-    command     = "ansible-playbook -i environments/development playbooks/dns.yml"
+    command     = "ansible-playbook -i environments/development playbooks/storage.yml"
   }
 
   depends_on = [
     local_file.ansible_ssh_priv_key,
-    module.domain,
+    module.storage,
   ]
 }
 

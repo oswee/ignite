@@ -1,6 +1,4 @@
 provider "libvirt" {
-  uri = "qemu:///system"
-  /* uri = "qemu+ssh://dzintars@workstation/system" */
+  uri = var.provider_libvirt_uri
 }
-
 

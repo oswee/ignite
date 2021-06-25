@@ -1,4 +1,4 @@
-module "domain" {
+module "storage" {
   # source = "git@github.com:oswee/terraform-libvirt-domain.git?ref=v0.0.1-alpha"
   source = "../../../../../../oswee/terraform-libvirt-domain"
 
@@ -9,17 +9,17 @@ module "domain" {
 
   cloudinit = {
     name           = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
-    dhcp           = false
-    interface_name = var.interface_name
+    dhcp           = true
+    interface_name = "eth0"
     nameservers = {
-      ns1 = "1.1.1.1"
-      ns2 = "9.9.9.9"
+      ns1 = null
+      ns2 = null
       ns3 = null
     }
   }
 
-  addresses = var.network_addresses
-  gateway   = var.default_gateway
+  addresses = null
+  gateway   = null
 
   vm = {
     user             = "ansible"
@@ -36,13 +36,13 @@ module "domain" {
 
   domain = {
     name   = "${var.instance_name}.${var.env_name}.${var.global_fqdn}"
-    memory = "1024"
+    memory = "2048"
     vcpu   = "2"
   }
 
   network = {
     name           = data.terraform_remote_state.base.outputs.management_network.name
-    mac            = var.network_mac
+    mac            = "1d:7e:78:0f:97:23"
     wait_for_lease = false
   }
 }

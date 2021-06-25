@@ -13,6 +13,7 @@ $TTL 900
 {{ hostvars['pxe'].hostname }}         IN  A   {{ cluster_network }}.{{ hostvars['pxe'].host_octet }}
 {{ hostvars['bastion'].hostname }}     IN  A   {{ cluster_network }}.{{ hostvars['bastion'].host_octet }}
 {{ hostvars['jenkins'].hostname }}     IN  A   {{ cluster_network }}.{{ hostvars['jenkins'].host_octet }}
+{{ hostvars['s3'].hostname }}          IN  A   {{ cluster_network }}.{{ hostvars['s3'].host_octet }}
 {{ hostvars['bootstrap'].hostname }}   IN  A   {{ cluster_network }}.{{ hostvars['bootstrap'].host_octet }}
 {{ hostvars['master-0'].hostname }}    IN  A   {{ cluster_network }}.{{ hostvars['master-0'].host_octet }}
 {{ hostvars['master-1'].hostname }}    IN  A   {{ cluster_network }}.{{ hostvars['master-1'].host_octet }}

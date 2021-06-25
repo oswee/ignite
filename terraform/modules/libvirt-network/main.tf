@@ -11,5 +11,8 @@ resource "libvirt_network" "network" {
   dns {
     enabled = var.dhcp.enabled
   }
+  xml {
+    # xslt = file("xslt/network.xsl")
+    xslt = templatefile("${path.module}/templates/network.xsl", {})
+  }
 }
-
