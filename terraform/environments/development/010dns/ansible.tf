@@ -1,6 +1,6 @@
-resource "null_resource" "dns_config" {
+resource "null_resource" "instance_config" {
   # triggers = {
-  #   dhcp = module.dns
+  #   domain = module.domain
   # }
 
   # Be sure your DNS can resolve the domain of this instance. Most likely you
@@ -23,7 +23,7 @@ resource "null_resource" "dns_config" {
 
   depends_on = [
     local_file.ansible_ssh_priv_key,
-    module.dns,
+    module.domain,
   ]
 }
 

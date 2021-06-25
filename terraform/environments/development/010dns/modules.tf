@@ -1,4 +1,4 @@
-module "dns" {
+module "domain" {
   # source = "git@github.com:oswee/terraform-libvirt-domain.git?ref=v0.0.1-alpha"
   source = "../../../../../../oswee/terraform-libvirt-domain"
 
@@ -18,8 +18,8 @@ module "dns" {
     }
   }
 
-  addresses = ["192.168.200.253/16"]
-  gateway   = "192.168.254.254"
+  addresses = var.network_addresses
+  gateway   = var.default_gateway
 
   vm = {
     user             = "ansible"
@@ -42,9 +42,8 @@ module "dns" {
 
   network = {
     name           = data.terraform_remote_state.base.outputs.management_network.name
-    mac            = "56:90:01:22:e9:05"
+    mac            = var.network_mac
     wait_for_lease = false
   }
 }
-
 
