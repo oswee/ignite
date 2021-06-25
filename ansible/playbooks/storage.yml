@@ -1,0 +1,9 @@
+---
+
+- name: Configure storage
+  hosts: storage
+  become: no
+  gather_facts: yes
+
+  roles:
+    - role: minio

@@ -10,6 +10,9 @@ pxe
 [nameservers]
 ns1
 
+[storage]
+minio
+
 [buildservers]
 jenkins
 
@@ -40,6 +43,7 @@ cptnod-2
 workstations
 bootservers
 nameservers
+storage
 dhcpservers
 pxeservers
 bastions
