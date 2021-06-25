@@ -43,6 +43,12 @@ subnet 192.168.0.0 netmask 255.255.0.0 {
             option host-name "{{ hostvars['jenkins'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}";
         }
 
+        host  {{ hostvars['s3'].hostname }} {
+            hardware ethernet {{ hostvars['s3'].mac }};
+            fixed-address {{ cluster_network }}.{{ hostvars['s3'].host_octet }};
+            option host-name "{{ hostvars['s3'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}";
+        }
+
         host  {{ hostvars['bootstrap'].hostname }} {
             hardware ethernet {{ hostvars['bootstrap'].mac }};
             fixed-address {{ cluster_network }}.{{ hostvars['bootstrap'].host_octet }};

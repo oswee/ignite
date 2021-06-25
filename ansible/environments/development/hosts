@@ -11,7 +11,7 @@ pxe
 ns1
 
 [storage]
-minio
+s3
 
 [buildservers]
 jenkins
