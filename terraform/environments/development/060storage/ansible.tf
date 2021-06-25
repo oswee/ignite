@@ -1,6 +1,6 @@
 resource "null_resource" "storage_config" {
   # triggers = {
-  #   bastion = module.storage
+  #   domain = module.domain
   # }
 
   provisioner "remote-exec" {
@@ -21,7 +21,7 @@ resource "null_resource" "storage_config" {
 
   depends_on = [
     local_file.ansible_ssh_priv_key,
-    module.storage,
+    module.domain,
   ]
 }
 

@@ -1,4 +1,4 @@
-module "storage" {
+module "domain" {
   # source = "git@github.com:oswee/terraform-libvirt-domain.git?ref=v0.0.1-alpha"
   source = "../../../../../../oswee/terraform-libvirt-domain"
 
@@ -42,7 +42,7 @@ module "storage" {
 
   network = {
     name           = data.terraform_remote_state.base.outputs.management_network.name
-    mac            = "1d:7e:78:0f:97:23"
+    mac            = var.network_mac
     wait_for_lease = false
   }
 }
