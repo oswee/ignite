@@ -8,11 +8,11 @@ module "libvirt_pool" {
 
 module "management_network" {
   source    = "../../../modules/libvirt-network"
-  mode      = "bridge"
-  bridge    = "virbr0"
+  mode      = var.network_mode
+  bridge    = var.network_bridge
   addresses = null
   network = {
-    name = "management"
+    name = var.network_name
   }
   domain = null
 }
