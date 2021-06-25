@@ -14,7 +14,7 @@ resource "local_file" "ansible_ssh_priv_key" {
 
   provisioner "local-exec" {
     when = destroy
-    # command = "ssh-keygen -R dhcp.${var.env_name}.${var.global_fqdn}"
+    # command = "ssh-keygen -R ${var.instance_name}.${var.env_name}.${var.global_fqdn}"
     command = "ssh-keygen -R dhcp.dev.oswee.com"
   }
 }

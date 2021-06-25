@@ -4,6 +4,12 @@ variable "env_name" {
   default     = "dev"
 }
 
+variable "env_layer" {
+  description = "Environment layer name"
+  type        = string
+  default     = "020dhcp"
+}
+
 variable "global_fqdn" {
   description = ""
   type        = string
@@ -22,67 +28,32 @@ variable "ansible_ssh_key_name" {
   default     = "ansible_dhcp_dev_ecdsa"
 }
 
-variable "domain" {
-  description = "Domain e.g. 'example.com'"
-  type = object({
-    name = string
-  })
-  default = {
-    name = "example.local"
-  }
-}
-
-variable "cluster_name" {
-  description = "Name of the host e.g. [cluster_name].example.com"
-  type        = string
-  default     = "dev"
-}
-
 variable "interface_name" {
   description = "Primary network interface name"
   type        = string
   default     = "eth0"
 }
 
-variable "addresses" {
+variable "provider_libvirt_uri" {
+  description = "Qemu server uri. Format - qemu+ssh://user@host:2222/system"
+  type        = string
+  default     = "qemu:///system"
+}
+
+variable "network_addresses" {
   description = ""
   type        = list(string)
-  default     = ["192.168.123.0/24"]
+  default     = ["192.168.0.252/16"]
 }
 
-variable "autostart" {
+variable "network_mac" {
   description = ""
-  type        = bool
-  default     = false
+  type        = string
+  default     = "3a:72:7b:74:25:b4"
 }
 
-variable "volume" {
-  type = object({
-    name = string
-  })
-  default = {
-    name = "test"
-  }
-}
-
-variable "network" {
-  type = object({
-    addresses = string
-    dhcp = object({
-      enabled = bool
-    })
-    dns = object({
-      enabled = bool
-    })
-  })
-
-  default = {
-    addresses = "192.168.68.0/24"
-    dhcp = {
-      enabled = false
-    }
-    dns = {
-      enabled = false
-    }
-  }
+variable "default_gateway" {
+  description = ""
+  type        = string
+  default     = "192.168.0.1"
 }

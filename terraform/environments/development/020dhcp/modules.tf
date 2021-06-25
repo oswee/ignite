@@ -1,4 +1,4 @@
-module "dhcp" {
+module "domain" {
   # source = "git@github.com:oswee/terraform-libvirt-domain.git?ref=v0.0.1-alpha"
   source = "../../../../../../oswee/terraform-libvirt-domain"
 
@@ -17,8 +17,8 @@ module "dhcp" {
     }
   }
 
-  addresses = ["192.168.200.252/16"]
-  gateway   = "192.168.254.254"
+  addresses = var.network_addresses
+  gateway   = var.default_gateway
 
   vm = {
     user             = "ansible"
@@ -41,7 +41,7 @@ module "dhcp" {
 
   network = {
     name           = data.terraform_remote_state.base.outputs.management_network.name
-    mac            = "3a:72:7b:74:25:b4"
+    mac            = var.network_mac
     wait_for_lease = false
   }
 }
