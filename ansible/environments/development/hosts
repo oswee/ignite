@@ -47,7 +47,7 @@ storage
 dhcpservers
 pxeservers
 bastions
-jenkins
+buildservers
 masters
 infnodes
 cptnodes
