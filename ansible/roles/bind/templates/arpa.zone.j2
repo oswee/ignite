@@ -14,6 +14,7 @@ $TTL 900
 {{ hostvars['bastion'].host_octet }}   IN  PTR {{ hostvars['bastion'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
 {{ hostvars['jenkins'].host_octet }}   IN  PTR {{ hostvars['jenkins'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
 {{ hostvars['s3'].host_octet }}        IN  PTR {{ hostvars['s3'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
+{{ hostvars['vault'].host_octet }}     IN  PTR {{ hostvars['vault'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
 {{ hostvars['master-0'].host_octet }}  IN  PTR {{ hostvars['master-0'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
 {{ hostvars['master-1'].host_octet }}  IN  PTR {{ hostvars['master-1'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
 {{ hostvars['master-2'].host_octet }}  IN  PTR {{ hostvars['master-2'].hostname }}.{{ cluster_name }}.{{ dns_domain_name }}.
