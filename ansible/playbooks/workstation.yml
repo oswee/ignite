@@ -23,3 +23,12 @@
         - terraform
       vars:
         terraform_version: 0.14.7
+    - role: oswee.ansible.bazel
+      tags:
+        - bazel
+    - role: oswee.ansible.nodejs
+      tags:
+        - nodejs
+    - role: oswee.ansible.helm
+      tags:
+        - helm
