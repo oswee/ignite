@@ -38,3 +38,6 @@
     - role: oswee.ansible.sway
       tags:
         - sway
+    - role: oswee.ansible.zsh
+      tags:
+        - zsh
