@@ -32,3 +32,6 @@
     - role: oswee.ansible.helm
       tags:
         - helm
+    - role: oswee.ansible.nvim
+      tags:
+        - nvim
