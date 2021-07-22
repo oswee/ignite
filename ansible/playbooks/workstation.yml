@@ -50,3 +50,6 @@
     - role: oswee.ansible.git
       tags:
         - git
+    - role: oswee.ansible.tmux
+      tags:
+        - tmux
