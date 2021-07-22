@@ -47,3 +47,6 @@
     - role: oswee.ansible.alacritty
       tags:
         - alacritty
+    - role: oswee.ansible.git
+      tags:
+        - git
