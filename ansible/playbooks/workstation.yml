@@ -53,3 +53,6 @@
     - role: oswee.ansible.tmux
       tags:
         - tmux
+    - role: oswee.ansible.slack
+      tags:
+        - slack
