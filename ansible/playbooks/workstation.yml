@@ -44,3 +44,6 @@
     - role: oswee.ansible.obsidian
       tags:
         - obsidian
+    - role: oswee.ansible.alacritty
+      tags:
+        - alacritty
