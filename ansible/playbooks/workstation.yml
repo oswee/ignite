@@ -35,3 +35,6 @@
     - role: oswee.ansible.nvim
       tags:
         - nvim
+    - role: oswee.ansible.sway
+      tags:
+        - sway
