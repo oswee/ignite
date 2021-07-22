@@ -41,3 +41,6 @@
     - role: oswee.ansible.zsh
       tags:
         - zsh
+    - role: oswee.ansible.obsidian
+      tags:
+        - obsidian
