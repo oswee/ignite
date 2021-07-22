@@ -35,9 +35,9 @@
     - role: oswee.ansible.nvim
       tags:
         - nvim
-    - role: oswee.ansible.sway
-      tags:
-        - sway
+    # - role: oswee.ansible.sway
+    #   tags:
+    #     - sway
     - role: oswee.ansible.zsh
       tags:
         - zsh
@@ -56,3 +56,6 @@
     - role: oswee.ansible.slack
       tags:
         - slack
+    - role: oswee.ansible.libvirt
+      tags:
+        - libvirt
