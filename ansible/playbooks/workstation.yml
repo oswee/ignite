@@ -59,6 +59,10 @@
     - role: oswee.ansible.libvirt
       tags:
         - libvirt
+      vars:
+        libvirt_dir_iso: "/home/{{ become_user }}/kvm/iso"
+        libvirt_dir_images: "/home/{{ become_user }}/kvm/images"
+        libvirt_dir_pools: "/home/{{ become_user }}/kvm/pools"
     - role: oswee.ansible.mariadb
       tags:
         - mariadb
