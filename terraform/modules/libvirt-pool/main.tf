@@ -1,6 +1,6 @@
 resource "libvirt_pool" "pool" {
-  name = local.pool.name
-  type = local.pool.type
-  path = local.pool.path
+  name = var.name
+  type = var.type
+  path = var.path
 }
 

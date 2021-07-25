@@ -31,7 +31,7 @@ variable "global_fqdn" {
 variable "global_libvirt_pool_path" {
   description = ""
   type        = string
-  default     = "/var/lib/libvirt/pools"
+  default     = "/var/lib/libvirt/images"
 }
 
 variable "network_mode" {
