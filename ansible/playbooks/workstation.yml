@@ -59,3 +59,6 @@
     - role: oswee.ansible.libvirt
       tags:
         - libvirt
+    - role: oswee.ansible.mariadb
+      tags:
+        - mariadb
