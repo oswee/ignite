@@ -189,7 +189,7 @@ backend my.{{ root_domain }}.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ my.{{ root_domain }}
-  server {{ hostname }} {{ network }}.{{ host }}:8081 check
+  server {{ hostname }} {{ network }}.{{ host_octet }}:8081 check
 
 backend dev.{{ root_domain }}.backend
   balance roundrobin
@@ -212,7 +212,7 @@ backend jenkins.{{ root_domain }}.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ jenkins.{{ root_domain }}
-  server {{ hostname }} {{ network }}.{{ host }}:9093 check
+  server {{ hostname }} {{ network }}.{{ host_octet }}:9093 check
 
 backend vault.{{ root_domain }}.backend
   balance roundrobin
@@ -221,7 +221,7 @@ backend vault.{{ root_domain }}.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ vault.{{ root_domain }}
-  server {{ hostname }} {{ network }}.{{ host }}:8200 ssl verify none alpn h2,HTTP/1.1 check
+  server {{ hostname }} {{ network }}.{{ host_octet }}:8200 ssl verify none alpn h2,HTTP/1.1 check
 
 backend s3.{{ root_domain }}.backend
   balance roundrobin
@@ -230,8 +230,8 @@ backend s3.{{ root_domain }}.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ s3.{{ root_domain }}
-  #server {{ hostname }} {{ network }}.{{ host }}:8001 ssl verify none alpn h2,HTTP/1.1 check
-  server {{ hostname }} {{ network }}.{{ host }}:8001 check
+  #server {{ hostname }} {{ network }}.{{ host_octet }}:8001 ssl verify none alpn h2,HTTP/1.1 check
+  server {{ hostname }} {{ network }}.{{ host_octet }}:8001 check
 
 backend cloud.{{ root_domain }}.backend
   balance roundrobin
@@ -240,7 +240,7 @@ backend cloud.{{ root_domain }}.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ cloud.{{ root_domain }}
-  server {{ hostname }} {{ network }}.{{ host }}:8085 check
+  server {{ hostname }} {{ network }}.{{ host_octet }}:8085 check
 
 backend office.{{ root_domain }}.backend
   balance roundrobin
@@ -249,7 +249,7 @@ backend office.{{ root_domain }}.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ office.{{ root_domain }}
-  server {{ hostname }} {{ network }}.{{ host }}:9980 check
+  server {{ hostname }} {{ network }}.{{ host_octet }}:9980 check
 
 backend registry.{{ root_domain }}.backend
   balance roundrobin
@@ -258,7 +258,7 @@ backend registry.{{ root_domain }}.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ registry.{{ root_domain }}
-  server {{ hostname }} {{ network }}.{{ host }}:9981 check
+  server {{ hostname }} {{ network }}.{{ host_octet }}:9981 check
 
 backend dzintars.dev.backend
   balance roundrobin
@@ -266,7 +266,7 @@ backend dzintars.dev.backend
   compression algo gzip
   compression type text/html text/plain text/css
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ dzintars.dev
-  server {{ hostname }} {{ network }}.{{ host }}:8084 check
+  server {{ hostname }} {{ network }}.{{ host_octet }}:8084 check
 
 backend merumore.com.backend
   balance roundrobin
@@ -275,7 +275,7 @@ backend merumore.com.backend
   compression type text/html text/plain text/css
   # https://serverfault.com/a/887396/440073
   # option httpchk HEAD / HTTP/1.1\r\nHost:\ my.{{ root_domain }}
-  server {{ hostname }} {{ network }}.{{ host }}:8082 check
+  server {{ hostname }} {{ network }}.{{ host_octet }}:8082 check
 
 backend websocket.backend
   balance roundrobin
