@@ -6,6 +6,9 @@
   gather_facts: yes
   become: no
 
+  # collections:
+  #   - oswee.ansible
+
   roles:
     - role: oswee.ansible.golang
       tags:
@@ -66,3 +69,18 @@
     - role: oswee.ansible.mariadb
       tags:
         - mariadb
+    - role: quay
+      tags:
+        - quay
+    - role: haproxy
+      tags:
+        - haproxy
+    - role: oswee.ansible.vagrant
+      tags:
+        - vagrant
+    - role: oswee.ansible.molecule
+      tags:
+        - molecule
+    - role: oswee.ansible.github
+      tags:
+        - github
