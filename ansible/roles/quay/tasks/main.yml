@@ -1,0 +1,8 @@
+---
+# tasks file for roles/quay
+
+- name: Play kube file
+  become: yes
+  containers.podman.podman_play:
+    kube_file: /home/dzintars/code/github.com/oswee/ignite/ansible/roles/quay/templates/pod.yml
+    state: absent
