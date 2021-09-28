@@ -2,6 +2,7 @@
 
 collections:
   # - name: ssbarnea.molecule
+  - name: containers.podman
   - name: https://github.com/oswee/ansible.git
     version: master
     type: git
