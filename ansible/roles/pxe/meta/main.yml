@@ -48,5 +48,5 @@ galaxy_info:
     #       Maximum 20 tags per role.
 
 dependencies:
-- name: oswee.ansible.ipxe
-- name: oswee.ansible.tftp
+- name: oswee.general.ipxe
+- name: oswee.general.tftp

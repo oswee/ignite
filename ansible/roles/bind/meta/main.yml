@@ -48,6 +48,6 @@ galaxy_info:
     #       maximum 20 tags per role.
 
 dependencies:
-- name: oswee.ansible.bind
+- name: oswee.general.bind
   vars:
     bind_network_interface_name: '{{ network_interface_name }}'

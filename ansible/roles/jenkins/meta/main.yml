@@ -48,7 +48,7 @@ galaxy_info:
     #       Maximum 20 tags per role.
 
 dependencies:
-- name: oswee.ansible.jenkins
+- name: oswee.general.jenkins
   vars:
     jenkins_listen_address: "{{ cluster_network }}.{{ hostvars['jenkins'].host_octet }}"
     jenkins_http_port: 9093

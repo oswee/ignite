@@ -10,7 +10,7 @@
   #   - oswee.ansible
 
   roles:
-    - role: oswee.ansible.golang
+    - role: oswee.general.golang
       tags:
         - golang
       vars:
@@ -18,55 +18,55 @@
     - role: minio
       tags:
         - minio
-    - role: oswee.ansible.vault
+    - role: oswee.general.vault
       tags:
         - vault
-    - role: oswee.ansible.terraform
+    - role: oswee.general.terraform
       tags:
         - terraform
       vars:
         terraform_version: 1.0.3
-    - role: oswee.ansible.bazel
+    - role: oswee.general.bazel
       tags:
         - bazel
-    - role: oswee.ansible.nodejs
+    - role: oswee.general.nodejs
       tags:
         - nodejs
-    - role: oswee.ansible.helm
+    - role: oswee.general.helm
       tags:
         - helm
-    - role: oswee.ansible.nvim
+    - role: oswee.general.nvim
       tags:
         - nvim
-    # - role: oswee.ansible.sway
-    #   tags:
-    #     - sway
-    - role: oswee.ansible.zsh
+    - role: oswee.general.sway
+      tags:
+        - sway
+    - role: oswee.general.zsh
       tags:
         - zsh
-    - role: oswee.ansible.obsidian
+    - role: oswee.general.obsidian
       tags:
         - obsidian
-    - role: oswee.ansible.alacritty
+    - role: oswee.general.alacritty
       tags:
         - alacritty
-    - role: oswee.ansible.git
+    - role: oswee.general.git
       tags:
         - git
-    - role: oswee.ansible.tmux
+    - role: oswee.general.tmux
       tags:
         - tmux
-    - role: oswee.ansible.slack
+    - role: oswee.general.slack
       tags:
         - slack
-    - role: oswee.ansible.libvirt
+    - role: oswee.general.libvirt
       tags:
         - libvirt
       vars:
         libvirt_dir_iso: "/home/{{ become_user }}/kvm/iso"
         libvirt_dir_images: "/home/{{ become_user }}/kvm/images"
         libvirt_dir_pools: "/home/{{ become_user }}/kvm/pools"
-    - role: oswee.ansible.mariadb
+    - role: oswee.general.mariadb
       tags:
         - mariadb
     - role: quay
@@ -75,12 +75,12 @@
     - role: haproxy
       tags:
         - haproxy
-    - role: oswee.ansible.vagrant
+    - role: oswee.general.vagrant
       tags:
         - vagrant
-    - role: oswee.ansible.molecule
+    - role: oswee.general.molecule
       tags:
         - molecule
-    - role: oswee.ansible.github
+    - role: oswee.general.github
       tags:
         - github
