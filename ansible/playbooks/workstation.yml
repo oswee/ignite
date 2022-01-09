@@ -47,6 +47,9 @@
     - role: oswee.general.sddm
       tags:
         - sddm
+    - role: oswee.general.fonts
+      tags:
+        - fonts
     - role: oswee.general.zsh
       tags:
         - zsh
