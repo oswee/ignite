@@ -1,6 +1,6 @@
 ---
 
-ansible_python_interpreter: /usr/bin/python3.9
+# ansible_python_interpreter: /usr/bin/python3.9
 ansible_ssh_common_args: "-F environments/development/.ssh/config"
 
 tls_certs: '{{ vault_tls_certs }}'
