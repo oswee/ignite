@@ -41,6 +41,9 @@
     - role: oswee.general.sway
       tags:
         - sway
+    - role: oswee.general.swaylock
+      tags:
+        - swaylock
     - role: oswee.general.zsh
       tags:
         - zsh
